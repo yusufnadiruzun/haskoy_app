@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "haskoy_app",
+    "slug": "haskoy_app",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "haskoy_app"
+}
