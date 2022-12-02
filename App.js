@@ -1,16 +1,17 @@
 
 import React from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Provider } from 'react-redux';
+import store from './redux';
+import Login from './components/login/login';
 
-export default function App() {
+function App() {
   return (
-    <ScrollView>
-
-      <Text>asd</Text>
-    
- 
-    </ScrollView>
-    
+  <Provider store={store}>
+    <View>
+      <Login></Login>
+    </View>
+  </Provider>
   );
 }
 
@@ -22,3 +23,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default App;
