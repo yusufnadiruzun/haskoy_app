@@ -1,17 +1,17 @@
 import React, {useState} from 'react'
 import { View, Text, SafeAreaView,Image,TextInput, StyleSheet, TouchableOpacity} from 'react-native'
 
-function login() {
+function Login({navigation}) {
+
   const [userName,setUserName] = useState('');
   const [password,setPassword] = useState('');
 
-  const login = () => {
-    
+  const GoSignin = () => {
+    navigation.navigate('Sign');
   }
   return (
   
    <SafeAreaView style>   
-    
     <Image 
     source={require('../../assets/haskoy.png')} 
     style ={{width: 250, height: 200,marginLeft:'20%'}}/>
@@ -19,10 +19,10 @@ function login() {
     <TextInput style={style.input} placeholder="Kullanıcı Adı" onChange={(value) =>setUserName(value)}  />
     <TextInput style={style.input} placeholder="Şifre" secureTextEntry={true} onChange={(value) =>setPassword(value)} />
     <View>
-    <TouchableOpacity style={style.loginButton} onPress={login}>
+    <TouchableOpacity style={style.loginButton}>
             <Text style={style.loginText}>Giriş Yap</Text>
     </TouchableOpacity>
-    <TouchableOpacity style={style.signButton}  >
+    <TouchableOpacity style={style.signButton} onPress={GoSignin}>
              <Text style={style.signText} >Hala Hesabınız Yokmu ?</Text>
     </TouchableOpacity>
     </View>
@@ -78,8 +78,8 @@ const style = StyleSheet.create({
   footer:{
     textAlign :"center",
     marginTop:'22%',
-    marginBottom:'20%',
+    marginBottom:'20%'
   }
 })
 
-export default login
+export default Login;
