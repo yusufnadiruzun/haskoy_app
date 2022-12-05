@@ -2,9 +2,9 @@ import React from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { Provider } from "react-redux";
 import store from "./redux";
-import Login from "./components/Login/Login";
-import Menu from "./components/Menu/Menu";
-import Signin from "./components/Login/Signin";
+import Login from "./screens/Login/Login";
+import Menu from "./screens/Menu/Menu";
+import Signin from "./screens/Login/Signin";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 

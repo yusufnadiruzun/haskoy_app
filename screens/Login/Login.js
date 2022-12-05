@@ -14,8 +14,8 @@ function Login({navigation}) {
    <SafeAreaView style>   
     <Image 
     source={require('../../assets/haskoy.png')} 
-    style ={{width: 250, height: 200,marginLeft:'20%'}}/>
-    <Text style={{fontSize: 30,marginLeft:'18%',fontWeight:'500',color:'#16B497'}}>Hasköy'e Hoşgeldiniz</Text>
+    style ={style.haskoyIcon}/>
+    <Text style={style.welcome}>Hasköy'e Hoşgeldiniz</Text>
     <TextInput style={style.input} placeholder="Kullanıcı Adı" onChange={(value) =>setUserName(value)}  />
     <TextInput style={style.input} placeholder="Şifre" secureTextEntry={true} onChange={(value) =>setPassword(value)} />
     <View>
@@ -33,7 +33,12 @@ function Login({navigation}) {
   )
 }
 const style = StyleSheet.create({
-
+  haskoyIcon:{
+    width: 250, height: 200,marginLeft:'20%'
+  },
+  welcome:{
+    fontSize: 30,marginLeft:'18%',fontWeight:'500',color:'#16B497'
+  },
   input:{
     padding:10,
     marginLeft:'13%',
@@ -66,7 +71,7 @@ const style = StyleSheet.create({
     textAlign :"center",
      color:'white',
      fontWeight:'800',
-     marginTop:'1%',
+     marginTop:'0%',
      fontSize:20
   },
   signText:{
@@ -78,7 +83,8 @@ const style = StyleSheet.create({
   footer:{
     textAlign :"center",
     marginTop:'22%',
-    marginBottom:'20%'
+    marginBottom:'15%',
+    fontSize:14
   }
 })
 
