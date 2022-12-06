@@ -9,6 +9,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 
+
 const Stack = createNativeStackNavigator();
 
 function App() {
@@ -16,32 +17,30 @@ function App() {
   return (
     <Provider store={store}>
       {signIn ? (
-         <NavigationContainer>
-         <Stack.Navigator
-           screenOptions={{
-             headerShown: false,
-           }}
-         >
-           <Stack.Screen name="Menu" component={Menu} />
-         </Stack.Navigator>
-       </NavigationContainer>
+        <NavigationContainer>
+          <Stack.Navigator
+            screenOptions={{
+              headerShown: false,
+            }}
+          >
+            <Stack.Screen name="Menu" component={Menu} />
+          </Stack.Navigator>
+        </NavigationContainer>
       ) : (
         <NavigationContainer>
-        <Stack.Navigator
-          screenOptions={{
-            headerShown: false,
-          }}
-        >
-          <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="Sign" component={Signin} />
-          
-        </Stack.Navigator>
-      </NavigationContainer>
+          <Stack.Navigator
+            screenOptions={{
+              headerShown: false,
+            }}
+          >
+            <Stack.Screen name="Login" component={Login} />
+            <Stack.Screen name="Sign" component={Signin} />
+          </Stack.Navigator>
+        </NavigationContainer>
       )}
     </Provider>
   );
 }
-
 
 const styles = StyleSheet.create({
   container: {
