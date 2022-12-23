@@ -4,38 +4,30 @@ import {
   TouchableOpacity,
   StyleSheet,
   Image,
+  ScrollView,
+  StatusBar,
 } from "react-native";
 import React from "react";
 import SignBlocks from "../../components/SignBlocks";
 import Icon from "react-native-vector-icons/FontAwesome";
-import {auth, createUserWithEmailAndPassword}  from "../../database/Firebase";
+import { auth, createUserWithEmailAndPassword } from "../../database/Firebase";
+import { writeNewUser } from "../../database/DatabaseOperations";
+import User from "../../Objects/User";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const Signin = ({ navigation }) => {
-
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [name, setName] = React.useState("");
   const [phone, setPhone] = React.useState("");
 
-  const signDB = async () => {
-    
-      await createUserWithEmailAndPassword(auth,email, password)
-      .then((userCredential) => {
-        // Signed in
-        var user = userCredential.user;
-        // ...
-      })
-      .catch((error) => {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // ..
-        alert(errorCode + " " + errorMessage);
-      });
-      
-  }
-  
+  const control = () => {
+    const user = new User(name, email, phone, password, "user");
+    writeNewUser(user);
+  };
+
   return (
-    <View>
+    <SafeAreaView>
       <TouchableOpacity>
         <Icon
           name="arrow-left"
@@ -49,37 +41,43 @@ const Signin = ({ navigation }) => {
         source={require("../../assets/haskoy.png")}
         style={style.haskoyIcon}
       />
-      <View style={style.block}>
-        <SignBlocks
-          icon="user"
-          placeholder="İsim Soyisim"
-          changeFunc={(name) => setName(name)}
-        ></SignBlocks>
-        <SignBlocks
-          icon="lock"
-          placeholder="Şifre"
-          password={true}
-          changeFunc={(password) => setPassword(password)}
-        ></SignBlocks>
-        <SignBlocks
-          icon="envelope"
-          placeholder="Mail"
-          changeFunc={(mail) => setEmail(mail)}
-        ></SignBlocks>
-        <SignBlocks
-          icon="phone"
-          placeholder="Telefon No"
-          changeFunc={(phone) => setPhone(phone)}
-        ></SignBlocks>
-      </View>
-      <TouchableOpacity style={style.button} onPress={() => signDB()}>
+      <ScrollView style={style.scrollView}>
+          <SignBlocks
+            icon="user"
+            placeholder="İsim Soyisim"
+            changeFunc={(name) => setName(name)}
+          ></SignBlocks>
+          <SignBlocks
+            icon="lock"
+            placeholder="Şifre"
+            password={true}
+            changeFunc={(password) => setPassword(password)}
+          ></SignBlocks>
+          <SignBlocks
+            icon="envelope"
+            placeholder="Mail"
+            changeFunc={(mail) => setEmail(mail)}
+          ></SignBlocks>
+          <SignBlocks
+            icon="phone"
+            placeholder="Telefon No"
+            changeFunc={(phone) => setPhone(phone)}
+          ></SignBlocks>
+          
+      
+      </ScrollView>
+      <TouchableOpacity style={style.button} onPress={() => control()}>
         <Text style={style.signButon}>Kaydol</Text>
       </TouchableOpacity>
-    </View>
+    </SafeAreaView>
   );
 };
 
 const style = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingTop: StatusBar.currentHeight,
+  },
   signButon: {
     textAlign: "center",
     color: "white",
@@ -105,10 +103,13 @@ const style = StyleSheet.create({
     color: "#F1701C",
     marginTop: "2%",
   },
+  scrollView: {
+    marginHorizontal: 20,
+  },
   haskoyIcon: {
-    width: 250,
+    width: 200,
     height: 150,
-    marginLeft: "20%",
+    marginLeft: "23%",
   },
   icon: {
     marginLeft: "5%",
