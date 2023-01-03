@@ -100,7 +100,7 @@ const style = StyleSheet.create({
   },
   footer: {
     textAlign: "center",
-    marginTop: "22%",
+    marginTop: "60%",
     marginBottom: "15%",
     fontSize: 14,
   },
