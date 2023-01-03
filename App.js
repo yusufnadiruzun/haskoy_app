@@ -12,7 +12,7 @@ import StudentsList from "./screens/StudentsList/StudentsList";
 const Stack = createNativeStackNavigator();
 
 function App() {
-  let signIn = false;
+  let signIn = true;
   return (
     <Provider store={store}>
       {signIn ? (

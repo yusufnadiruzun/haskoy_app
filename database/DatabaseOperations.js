@@ -3,9 +3,10 @@ import { database } from "./Firebase.js";
 import { createUserWithEmailAndPassword } from "./Firebase.js";
 import { ref, set } from "firebase/database";
 
+
 function writeNewUser(User) {
   console.log(User.name);
-  set(ref(database, "users/" + 2), {
+  set(ref(database, "users/"), {
     name: User.name || "",
     email: User.email || "",
     phone: User.phone || "",
