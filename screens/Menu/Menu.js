@@ -1,13 +1,14 @@
 import React from 'react'
-import { View, Text } from 'react-native'
-
+import { View, Text, StyleSheet} from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
+import { Button, ThemeProvider } from '@rneui/themed';
 
 const Menu = () => {
   return (
-    <View>
-      <Text>ben </Text>
-    </View>
+    <SafeAreaView >
+      <Button title="Solid" type="solid" loading />
+    </SafeAreaView>
+
   )
 }
-
 export default Menu

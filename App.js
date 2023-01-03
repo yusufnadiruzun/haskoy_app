@@ -35,6 +35,7 @@ function App() {
           >
             <Stack.Screen name="Login" component={Login} />
             <Stack.Screen name="Sign" component={Signin} />
+            <Stack.Screen name="Menu" component={Menu} />
           </Stack.Navigator>
         </NavigationContainer>
       )}

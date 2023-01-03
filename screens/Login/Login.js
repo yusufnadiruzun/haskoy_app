@@ -33,7 +33,7 @@ function Login({ navigation }) {
         onChange={(value) => setPassword(value)}
       />
       <View>
-        <TouchableOpacity style={style.loginButton}>
+        <TouchableOpacity style={style.loginButton} onPress ={() => navigation.navigate("Menu")}>
           <Text style={style.loginText}>Giriş Yap</Text>
         </TouchableOpacity>
         <TouchableOpacity style={style.signButton} onPress={()=>navigation.navigate("Sign")}>
@@ -100,7 +100,7 @@ const style = StyleSheet.create({
   },
   footer: {
     textAlign: "center",
-    marginTop: "60%",
+    marginTop: "22%",
     marginBottom: "15%",
     fontSize: 14,
   },
