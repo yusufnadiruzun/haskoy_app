@@ -5,7 +5,7 @@ import { View, Text } from 'react-native'
 const Menu = () => {
   return (
     <View>
-      <Text>menu</Text>
+      <Text>ben </Text>
     </View>
   )
 }

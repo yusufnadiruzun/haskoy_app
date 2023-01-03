@@ -5,7 +5,7 @@ import { ref, set } from "firebase/database";
 
 function writeNewUser(User) {
   console.log(User.name);
-  set(ref(database, "users/"), {
+  set(ref(database, "users/" + 2), {
     name: User.name || "",
     email: User.email || "",
     phone: User.phone || "",
