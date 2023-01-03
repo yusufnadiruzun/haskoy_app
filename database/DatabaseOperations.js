@@ -3,6 +3,7 @@ import { database } from "./Firebase.js";
 import { createUserWithEmailAndPassword } from "./Firebase.js";
 import { ref, set } from "firebase/database";
 
+
 function writeNewUser(User) {
   console.log(User.name);
   set(ref(database, "users/"), {

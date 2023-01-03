@@ -9,7 +9,6 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import StudentsList from "./screens/StudentsList/StudentsList";
 
-
 const Stack = createNativeStackNavigator();
 
 function App() {
