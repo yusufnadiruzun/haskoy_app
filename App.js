@@ -7,7 +7,7 @@ import Menu from "./screens/Menu/Menu";
 import Signin from "./screens/Login/Signin";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-
+import StudentsList from "./screens/StudentsList/StudentsList";
 
 
 const Stack = createNativeStackNavigator();
@@ -23,7 +23,8 @@ function App() {
               headerShown: false,
             }}
           >
-            <Stack.Screen name="Menu" component={Menu} />
+            <Stack.Screen name="StudentsList" component={StudentsList} />
+           <Stack.Screen name="Menu" component={Menu} />
           </Stack.Navigator>
         </NavigationContainer>
       ) : (
