@@ -15,7 +15,7 @@ function Login({ navigation }) {
 
   
   return (
-    <SafeAreaView style>
+    <SafeAreaView >
       <Image
         source={require("../../assets/haskoy.png")}
         style={style.haskoyIcon}
@@ -40,10 +40,11 @@ function Login({ navigation }) {
           <Text style={style.signText}>Hala Hesabınız Yokmu ?</Text>
         </TouchableOpacity>
       </View>
-      <View>
-        <Text style={style.footer}>© Yusuf Nadir Uzun - 2022</Text>
+      <View style={style.footer}>
+        <Text >© Yusuf Nadir Uzun - 2022</Text>
       </View>
     </SafeAreaView>
+    
   );
 }
 const style = StyleSheet.create({
@@ -99,10 +100,10 @@ const style = StyleSheet.create({
     fontWeight: "700",
   },
   footer: {
-    textAlign: "center",
-    marginTop: "22%",
-    marginBottom: "15%",
+    position: "absolute",
     fontSize: 14,
+    marginTop: "150%",
+    marginLeft: "30%",
   },
 });
 

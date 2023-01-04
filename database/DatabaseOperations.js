@@ -1,12 +1,28 @@
 import { auth } from "./Firebase.js";
 import { database } from "./Firebase.js";
 import { createUserWithEmailAndPassword } from "./Firebase.js";
-import { ref, set } from "firebase/database";
+import { ref, set,push} from "firebase/database";
 
 
+// Create a new post reference with an auto-generated id
+function writeNewUser(User){
+const postListRef = ref(database, 'users');
+const newPostRef = push(postListRef);
+set(newPostRef, {
+  name: User.name || "",
+  email: User.email || "",
+  phone: User.phone || "",
+  password: User.password || "",
+  status: User.status || "",
+  created_at: `${new Date().getDay()}/${new Date().getMonth()}/${new Date().getFullYear()}`,
+    
+}).then().catch(err => console.log(err));
+}
+
+/*
 function writeNewUser(User) {
-  console.log(User.name);
-  set(ref(database, "users/"), {
+
+  push(database, "users/" + {
     name: User.name || "",
     email: User.email || "",
     phone: User.phone || "",
@@ -21,23 +37,7 @@ function writeNewUser(User) {
       // The write failed...
     });
 }
-/*
-function writeNewUser(email) {
-  // A post entry.
-  set(ref(database, 'users/' + 1), {
-    id:26,
-    email: email +"neden",
-    first: "yusufnadir",
-    last:"uzun",
-    company:"YNDR",
-    country:"Turkey",
-    created_at:"2021-05-01T00:00:00.000Z"})
-  .then(() => {
-    // Data saved successfully!
-  })
-  .catch((error) => {
-    // The write failed...
-  });
-}
 */
+
+
 export { writeNewUser };

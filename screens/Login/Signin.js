@@ -14,8 +14,11 @@ import { auth, createUserWithEmailAndPassword } from "../../database/Firebase";
 import { writeNewUser } from "../../database/DatabaseOperations";
 import User from "../../Objects/User";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { SignControl } from "../Methods/SignControl";
+
 
 const Signin = ({ navigation }) => {
+  
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [name, setName] = React.useState("");
@@ -23,7 +26,8 @@ const Signin = ({ navigation }) => {
 
   const control = () => {
     const user = new User(name, email, phone, password, "user");
-    writeNewUser(user);
+    SignControl(user) && writeNewUser(user); 
+    
   };
 
   return (
