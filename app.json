@@ -13,6 +13,7 @@
       "backgroundColor": "#ffffff"
     }
   },
-  "name": "haskoy_app"
-
+  "name": "haskoy_app",
+  "displayName": "Haskoy"
+  
 }

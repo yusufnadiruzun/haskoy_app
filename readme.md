@@ -7,3 +7,5 @@
  async storage react native de mevcut değil. Onun için ayrı paket indirilir. async-storage pageti npm i @react-native-community/async-storage
 
  apk almak icin ./gradlew assemblyDebug android icinde
+ isim değiştirdikten sonra ./gradlew clean
+ 
