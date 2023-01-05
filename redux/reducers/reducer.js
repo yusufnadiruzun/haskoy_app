@@ -1,11 +1,12 @@
 let default_state = {
-    result: 1
+    result: 1,
+    showLoading: false,
 }
 
 const reducer = (state = default_state, action) =>{
     switch(action.type){
-        case "ADD":
-            state = state + action.payload;
+        case "SIGNIN":
+            return {...state, showLoading: action.result};
             break;
         case "SUBTRACT":
             state = state - action.payload;

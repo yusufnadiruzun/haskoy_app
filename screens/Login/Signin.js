@@ -10,69 +10,104 @@ import {
 import React from "react";
 import SignBlocks from "../../components/SignBlocks";
 import Icon from "react-native-vector-icons/FontAwesome";
-import { auth, createUserWithEmailAndPassword } from "../../database/Firebase";
-import { writeNewUser } from "../../database/DatabaseOperations";
+import { WriteNewUser } from "../../database/DatabaseOperations";
 import User from "../../Objects/User";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { SignControl } from "../Methods/SignControl";
-
+import { SelectList } from "react-native-dropdown-select-list";
+import { useDispatch, useStore } from "react-redux";
+import { Button, ThemeProvider } from "@rneui/themed";
+import { useSelector } from "react-redux";
+import { SigninAction } from "../../redux/actionTypes.js";
 
 const Signin = ({ navigation }) => {
-  
+  //const selector = useSelector((state) => state.result);
+  // const dispatch = useDispatch();
+
+  const data = [
+    { key: "Tekamül Altı", value: "Tekamül Altı" },
+    { key: "İhzari", value: "İhzari" },
+    { key: "İbtidai", value: "İbtidai" },
+    { key: "Hazırlık Arapça", value: "Hazırlık Arapça" },
+    { key: "Kuranı Kerim", value: "Kuranı Kerim" },
+    { key: "Muhacir Kuranı Kerim", value: "Muhacir Kuranı Kerim" },
+    { key: "Personel", value: "Personel" },
+  ];
+
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [name, setName] = React.useState("");
   const [phone, setPhone] = React.useState("");
+  const [status, setStatus] = React.useState("");
+  const showLoading = false; //selector.showLoading;
 
   const control = () => {
-    const user = new User(name, email, phone, password, "user");
-    SignControl(user) && writeNewUser(user); 
-    
+    console.log("asdasdlopsad")
+    //dispatch(SigninAction(true));
+    setTimeout(() => {console.log("asdasdlopsad")}, 30000);
+    const user = new User(name, email, phone, password, status);
+    SignControl(user) && WriteNewUser(user);
   };
 
   return (
     <SafeAreaView>
-      <TouchableOpacity>
-        <Icon
-          name="arrow-left"
-          style={style.icon}
-          size={20}
-          color="#16B497"
-          onPress={() => navigation.navigate("Login")}
-        />
-      </TouchableOpacity>
-      <Image
-        source={require("../../assets/haskoy.png")}
-        style={style.haskoyIcon}
-      />
       <ScrollView style={style.scrollView}>
-          <SignBlocks
-            icon="user"
-            placeholder="İsim Soyisim"
-            changeFunc={(name) => setName(name)}
-          ></SignBlocks>
-          <SignBlocks
-            icon="lock"
-            placeholder="Şifre"
-            password={true}
-            changeFunc={(password) => setPassword(password)}
-          ></SignBlocks>
-          <SignBlocks
-            icon="envelope"
-            placeholder="Mail"
-            changeFunc={(mail) => setEmail(mail)}
-          ></SignBlocks>
-          <SignBlocks
-            icon="phone"
-            placeholder="Telefon No"
-            changeFunc={(phone) => setPhone(phone)}
-          ></SignBlocks>
-          
-      
+        <TouchableOpacity>
+          <Icon
+            name="arrow-left"
+            style={style.icon}
+            size={20}
+            color="#16B497"
+            onPress={() => navigation.navigate("Login")}
+          />
+        </TouchableOpacity>
+        <Image
+          source={require("../../assets/haskoy.png")}
+          style={style.haskoyIcon}
+        />
+
+        <SignBlocks
+          icon="user"
+          placeholder="İsim Soyisim"
+          changeFunc={(name) => setName(name)}
+        ></SignBlocks>
+        <SignBlocks
+          icon="lock"
+          placeholder="Şifre"
+          password={true}
+          changeFunc={(password) => setPassword(password)}
+        ></SignBlocks>
+        <SignBlocks
+          icon="envelope"
+          placeholder="Mail"
+          changeFunc={(mail) => setEmail(mail)}
+        ></SignBlocks>
+        <SignBlocks
+          icon="phone"
+          placeholder="Telefon No"
+          changeFunc={(phone) => setPhone(phone)}
+        ></SignBlocks>
+
+        <SelectList
+          data={data}
+          setSelected={setStatus}
+          placeholder="Talebe Nevi"
+          inputStyles={{ fontSize: 15, width: "80%", color: "#16B497" }}
+          dropdownStyles={{ color: "#16B497", width: "80%", marginLeft: "10%" }}
+          boxStyles={{ width: "80%", marginLeft: "10%", marginTop: "2%" }}
+        ></SelectList>
+
+        <TouchableOpacity style={style.button} onPress={() => control()}>
+          <Text style={style.signButon}>Kaydol</Text>
+        </TouchableOpacity>
       </ScrollView>
-      <TouchableOpacity style={style.button} onPress={() => control()}>
-        <Text style={style.signButon}>Kaydol</Text>
-      </TouchableOpacity>
+      {showLoading && (
+        <View
+          style={{ position: "absolute", zIndex: 1, top: "50%", left: "45%" }}
+        >
+          <Button title="Solid" type="solid" loading />
+        </View>
+      )}
     </SafeAreaView>
   );
 };
@@ -84,6 +119,7 @@ const style = StyleSheet.create({
   },
   signButon: {
     textAlign: "center",
+
     color: "white",
     fontWeight: "800",
     marginTop: "0%",
@@ -92,8 +128,9 @@ const style = StyleSheet.create({
   button: {
     width: 270,
     height: 35,
-    marginTop: "10%",
-    marginLeft: "20%",
+    marginTop: "5%",
+    padding: 3,
+    marginLeft: "15%",
     backgroundColor: "#EC823D",
     borderStyle: "solid",
     borderWidth: 2,

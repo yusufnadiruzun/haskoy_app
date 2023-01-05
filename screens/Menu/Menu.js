@@ -6,7 +6,7 @@ import { Button, ThemeProvider } from '@rneui/themed';
 const Menu = () => {
   return (
     <SafeAreaView >
-      <Button title="Solid" type="solid"/>
+      <Button title="Solid" type="solid" loading/>
     </SafeAreaView>
 
   )

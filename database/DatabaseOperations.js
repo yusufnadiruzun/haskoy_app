@@ -2,12 +2,18 @@ import { auth } from "./Firebase.js";
 import { database } from "./Firebase.js";
 import { createUserWithEmailAndPassword } from "./Firebase.js";
 import { ref, set,push} from "firebase/database";
-
+import {  useDispatch } from "react-redux";
+import { SigninAction } from "../redux/actionTypes.js";
 
 // Create a new post reference with an auto-generated id
-function writeNewUser(User){
+function WriteNewUser(User){
+ 
+  const dispatch = useDispatch();
+  
+  
 const postListRef = ref(database, 'users');
 const newPostRef = push(postListRef);
+
 set(newPostRef, {
   name: User.name || "",
   email: User.email || "",
@@ -16,7 +22,7 @@ set(newPostRef, {
   status: User.status || "",
   created_at: `${new Date().getDay()}/${new Date().getMonth()}/${new Date().getFullYear()}`,
     
-}).then().catch(err => console.log(err));
+}).then(dispatch(SigninAction(false))).catch();
 }
 
 /*
@@ -40,4 +46,4 @@ function writeNewUser(User) {
 */
 
 
-export { writeNewUser };
+export { WriteNewUser };
