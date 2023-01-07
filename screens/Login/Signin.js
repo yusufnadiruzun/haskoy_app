@@ -7,7 +7,7 @@ import {
   ScrollView,
   StatusBar,
 } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import SignBlocks from "../../components/SignBlocks";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { WriteNewUser } from "../../database/DatabaseOperations";
@@ -15,14 +15,13 @@ import User from "../../Objects/User";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { SignControl } from "../Methods/SignControl";
 import { SelectList } from "react-native-dropdown-select-list";
-import { useDispatch, useStore } from "react-redux";
 import { Button, ThemeProvider } from "@rneui/themed";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { SigninAction } from "../../redux/actionTypes.js";
 
 const Signin = ({ navigation }) => {
-  //const selector = useSelector((state) => state.result);
-  // const dispatch = useDispatch();
+  const selector = useSelector((state) => state.result);
+  const dispatch = useDispatch();
 
   const data = [
     { key: "Tekamül Altı", value: "Tekamül Altı" },
@@ -33,22 +32,21 @@ const Signin = ({ navigation }) => {
     { key: "Muhacir Kuranı Kerim", value: "Muhacir Kuranı Kerim" },
     { key: "Personel", value: "Personel" },
   ];
-
+  console.log(selector.showLoading);
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [name, setName] = React.useState("");
   const [phone, setPhone] = React.useState("");
   const [status, setStatus] = React.useState("");
-  const showLoading = false; //selector.showLoading;
+ 
 
-  const control = () => {
-    console.log("asdasdlopsad")
-    //dispatch(SigninAction(true));
-    setTimeout(() => {console.log("asdasdlopsad")}, 30000);
+  const control = async () => {
+    dispatch(SigninAction(true));
+    setTimeout(() => {}, 30000);
     const user = new User(name, email, phone, password, status);
-    SignControl(user) && WriteNewUser(user);
+    await SignControl(user)? ( await WriteNewUser(user) ? console.log("ben null serefsizi"): dispatch(SigninAction(false))) : dispatch(SigninAction(false));
   };
-
+  console.log(selector.showLoading);
   return (
     <SafeAreaView>
       <ScrollView style={style.scrollView}>
@@ -101,13 +99,13 @@ const Signin = ({ navigation }) => {
           <Text style={style.signButon}>Kaydol</Text>
         </TouchableOpacity>
       </ScrollView>
-      {showLoading && (
+      {selector.showLoading ? (
         <View
           style={{ position: "absolute", zIndex: 1, top: "50%", left: "45%" }}
         >
           <Button title="Solid" type="solid" loading />
         </View>
-      )}
+      ) : null}
     </SafeAreaView>
   );
 };

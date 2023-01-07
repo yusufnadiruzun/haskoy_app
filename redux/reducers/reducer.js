@@ -8,9 +8,7 @@ const reducer = (state = default_state, action) =>{
         case "SIGNIN":
             return {...state, showLoading: action.result};
             break;
-        case "SUBTRACT":
-            state = state - action.payload;
-            break;
+        
     }
     return state;
 }

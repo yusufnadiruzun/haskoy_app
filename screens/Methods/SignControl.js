@@ -1,4 +1,5 @@
 function SignControl(User) {
+  setTimeout(() => {}, 300);
   const { name, email, phone, password, status } = User;
 
   if (name === "" || email === "" || phone === "" || password === "") {
