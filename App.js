@@ -8,13 +8,13 @@ import Signin from "./screens/Login/Signin";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import StudentsList from "./screens/StudentsList/StudentsList";
+import InspectionMenu from "./screens/Inspection/InspectionMenu";
 //import {AsyncStorage} from 'react-native';
-
 
 const Stack = createNativeStackNavigator();
 
 function App() {
-  let signIn = false;
+  let signIn = true;
   return (
     <Provider store={store}>
       {signIn ? (
@@ -24,8 +24,9 @@ function App() {
               headerShown: false,
             }}
           >
+            <Stack.Screen name="Menu" component={Menu} />
+            <Stack.Screen name="InspectionMenu" component={InspectionMenu} />
             <Stack.Screen name="StudentsList" component={StudentsList} />
-           <Stack.Screen name="Menu" component={Menu} />
           </Stack.Navigator>
         </NavigationContainer>
       ) : (

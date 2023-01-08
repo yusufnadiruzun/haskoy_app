@@ -1,12 +1,14 @@
 import React from 'react'
-import { View, Text, StyleSheet} from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity} from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Button, ThemeProvider } from '@rneui/themed';
 
-const Menu = () => {
+const Menu = ({navigation}) => {
   return (
     <SafeAreaView >
-      <Button title="Solid" type="solid" loading/>
+      <TouchableOpacity style={{width:'30%',height:'30%',backgroundColor:'white', borderStyle:'solid',borderWidth:1,borderColor:'gray',borderRadius:10,alignItems:'center',justifyContent:'center'}} onPress={()=>navigation.navigate("InspectionMenu")}>
+        <Text>Yoklama</Text>
+      </TouchableOpacity>
     </SafeAreaView>
 
   )
