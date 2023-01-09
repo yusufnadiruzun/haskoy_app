@@ -7,7 +7,7 @@ const MenuItem = ({ name,where }) => {
     <TouchableOpacity
       style={{
         width: "45%",
-        height: "15%",
+        height: "20%",
         backgroundColor: "white",
         borderStyle: "solid",
         borderWidth: 1,
