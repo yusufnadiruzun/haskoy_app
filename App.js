@@ -1,20 +1,20 @@
 import React from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { Provider } from "react-redux";
-import store from "./redux";
-import Login from "./screens/Login/Login";
-import Menu from "./screens/Menu";
-import Signin from "./screens/Login/Signin";
+import store from "./src/redux";
+import Login from "./src/screens/Login/Login";
+import Menu from "./src/screens/Menu";
+import Signin from "./src/screens/Login/Signin";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import StudentsList from "./screens/StudentsList";
-import InspectionMenu from "./screens/InspectionMenu";
-import Cleaner from "./screens/Cleaner";
-import Guard from "./screens/Guard";
-import FoodList from "./screens/FoodList";
-import Wish from "./screens/Wish";
-import Temp from "./screens/Temp";
-import Competition from "./screens/Competition";
+import StudentsList from "./src/screens/StudentsList";
+import InspectionMenu from "./src/screens/InspectionMenu";
+import Cleaner from "./src/screens/Cleaner";
+import Guard from "./src/screens/Guard";
+import FoodList from "./src/screens/FoodList";
+import Wish from "./src/screens/Wish";
+import Temp from "./src/screens/Temp";
+import Competition from "./src/screens/Competition";
 //import {AsyncStorage} from 'react-native';
 
 const Stack = createNativeStackNavigator();
@@ -41,7 +41,7 @@ function App() {
             <Stack.Screen name="Competition" component={Competition} />
 
 
-            
+
           </Stack.Navigator>
         </NavigationContainer>
       ) : (
