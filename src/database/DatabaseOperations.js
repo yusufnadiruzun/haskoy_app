@@ -1,28 +1,48 @@
 import { database } from "./Firebase.js";
-import { ref, set,push} from "firebase/database";
+import { ref, set } from "firebase/database";
 
 // Create a new post reference with an auto-generated id
-function WriteNewUser(User){
+function WriteNewUser(User) {
   
   let result = true;
-  
-const postListRef = ref(database, 'users');
-const newPostRef = push(postListRef);
 
- set(newPostRef, {
-  name: User.name || "",
-  email: User.email || "",
-  phone: User.phone || "",
-  password: User.password || "",
-  status: User.status || "",
-  created_at: `${new Date().getDay()}/${new Date().getMonth()}/${new Date().getFullYear()}`,
-    
-}).then(() => {result = false}).catch((error) => {console.log(error)});
-console.log("result write ici",result);
-return result;
+  set(ref(database, "users/" + User.phone), {
+    name: User.name || "",
+    email: User.email || "",
+    phone: User.phone || "",
+    password: User.password || "",
+    status: User.status || "",
+    created_at: `${new Date().getDay()}/${new Date().getMonth()}/${new Date().getFullYear()}`,
+  })
+    .then(() => {
+      result = false;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+
+  return result;
+}
+/*
+  set(newPostRef, {
+    name: User.name || "",
+    email: User.email || "",
+    phone: User.phone || "",
+    password: User.password || "",
+    status: User.status || "",
+    created_at: `${new Date().getDay()}/${new Date().getMonth()}/${new Date().getFullYear()}`,
+  })
+    .then(() => {
+      result = false;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+
+  return result;
 }
 
-/*
+
 function writeNewUser(User) {
 
   push(database, "users/" + {
@@ -41,6 +61,5 @@ function writeNewUser(User) {
     });
 }
 */
-
 
 export { WriteNewUser };

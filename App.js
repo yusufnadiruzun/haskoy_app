@@ -20,9 +20,12 @@ import Competition from "./src/screens/Competition";
 const Stack = createNativeStackNavigator();
 
 function App() {
-  let signIn = true;
+
+  let signIn = false;
+
   return (
     <Provider store={store}>
+      
       {signIn ? (
         <NavigationContainer>
           <Stack.Navigator
@@ -39,9 +42,6 @@ function App() {
             <Stack.Screen name="Temp" component={Temp} />
             <Stack.Screen name="Wish" component={Wish} />
             <Stack.Screen name="Competition" component={Competition} />
-
-
-
           </Stack.Navigator>
         </NavigationContainer>
       ) : (

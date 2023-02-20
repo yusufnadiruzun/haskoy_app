@@ -38,13 +38,18 @@ const Signin = ({ navigation }) => {
   const [name, setName] = React.useState("");
   const [phone, setPhone] = React.useState("");
   const [status, setStatus] = React.useState("");
- 
 
   const control = async () => {
+    
     dispatch(SigninAction(true));
-    setTimeout(() => {}, 30000);
+ 
     const user = new User(name, email, phone, password, status);
-    await SignControl(user)? ( await WriteNewUser(user) ? console.log("ben null serefsizi"): dispatch(SigninAction(false))) : dispatch(SigninAction(false));
+    if(await SignControl(user)){
+      if(await WriteNewUser(user)){
+        dispatch(SigninAction(false));
+      }
+    }
+    // (await SignControl(user)) ? (await WriteNewUser(user)) ? null: dispatch(SigninAction(false)) : dispatch(SigninAction(false));
   };
   console.log(selector.showLoading);
   return (

@@ -13,9 +13,8 @@ function Login({ navigation }) {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
-  
   return (
-    <SafeAreaView >
+    <SafeAreaView>
       <Image
         source={require("../../assets/haskoy.png")}
         style={style.haskoyIcon}
@@ -33,18 +32,23 @@ function Login({ navigation }) {
         onChange={(value) => setPassword(value)}
       />
       <View>
-        <TouchableOpacity style={style.loginButton} onPress ={() => navigation.navigate("Menu")}>
+        <TouchableOpacity
+          style={style.loginButton}
+          onPress={() => navigation.navigate("Menu")}
+        >
           <Text style={style.loginText}>Giriş Yap</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={style.signButton} onPress={()=>navigation.navigate("Sign")}>
+        <TouchableOpacity
+          style={style.signButton}
+          onPress={() => navigation.navigate("Sign")}
+        >
           <Text style={style.signText}>Hala Hesabınız Yokmu ?</Text>
         </TouchableOpacity>
       </View>
       <View style={style.footer}>
-        <Text >© Yusuf Nadir Uzun - 2022</Text>
+        <Text>© Yusuf Nadir Uzun - 2022</Text>
       </View>
     </SafeAreaView>
-    
   );
 }
 const style = StyleSheet.create({
