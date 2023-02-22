@@ -21,10 +21,10 @@ const Stack = createNativeStackNavigator();
 
 function Navigator() {
   const selector = useSelector((state)=>(state.result))
-  console.log("ben sign in",selector.signin)
+
   return (
     <View style={{ flex: 1 }}>
-      {selector.signin ? (
+      {selector.login ? (
         <NavigationContainer>
           <Stack.Navigator
             screenOptions={{

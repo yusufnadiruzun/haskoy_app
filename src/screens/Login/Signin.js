@@ -13,11 +13,11 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import { WriteNewUser } from "../../database/DatabaseOperations";
 import User from "../../Objects/User";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { SignControl } from "../Methods/SignControl";
+import { SignTextControl } from "../Methods/TextControl";
 import { SelectList } from "react-native-dropdown-select-list";
 import { Button, ThemeProvider } from "@rneui/themed";
 import { useSelector, useDispatch } from "react-redux";
-import { SigninStarted,SigninSuccess } from "../../redux/actionTypes.js";
+import { SigninStarted, SigninSuccess } from "../../redux/actionTypes.js";
 
 const Signin = ({ navigation }) => {
   const selector = useSelector((state) => state.result);
@@ -32,7 +32,7 @@ const Signin = ({ navigation }) => {
     { key: "Muhacir Kuranı Kerim", value: "Muhacir Kuranı Kerim" },
     { key: "Personel", value: "Personel" },
   ];
-  console.log(selector.showLoading);
+  
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [name, setName] = React.useState("");
@@ -40,10 +40,8 @@ const Signin = ({ navigation }) => {
   const [status, setStatus] = React.useState("");
 
   const control = async () => {
-    
-    
     const user = new User(name, email, phone, password, status);
-    if (await SignControl(user)) {
+    if (await SignTextControl(user)) {
       dispatch(SigninStarted());
       if (await WriteNewUser(user)) {
         dispatch(SigninSuccess());
@@ -51,7 +49,7 @@ const Signin = ({ navigation }) => {
     }
     // (await SignControl(user)) ? (await WriteNewUser(user)) ? null: dispatch(SigninAction(false)) : dispatch(SigninAction(false));
   };
-  console.log(selector.showLoading);
+
   return (
     <SafeAreaView>
       <ScrollView style={style.scrollView}>

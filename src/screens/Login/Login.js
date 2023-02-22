@@ -8,13 +8,28 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
+import { Button } from "@rneui/themed";
+import { LoginControl } from "../../database/DatabaseOperations";
+import { LoginTextControl } from "../Methods/TextControl";
+import { useSelector, useDispatch } from "react-redux";
+import { LoginStarted, LoginSuccess } from "../../redux/actionTypes.js";
 
 function Login({ navigation }) {
+  const selector = useSelector((state) => state.result);
+  const dispatch = useDispatch();
+
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
+  const control = async () => {
+    if (await LoginTextControl(userName, password)) {
+      dispatch(LoginStarted());
+      (await LoginControl(userName, password)) && dispatch(LoginSuccess());
+      dispatch(LoginSuccess());
+    }
+  };
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ flex: 1 }}>
       <Image
         source={require("../../assets/haskoy.png")}
         style={style.haskoyIcon}
@@ -22,20 +37,17 @@ function Login({ navigation }) {
       <Text style={style.welcome}>Hasköy'e Hoşgeldiniz</Text>
       <TextInput
         style={style.input}
-        placeholder="Kullanıcı Adı"
-        onChange={(value) => setUserName(value)}
+        placeholder="Kullanıcı Adı(5__ ___ __ __)"
+        onChangeText={(value) => setUserName(value)}
       />
       <TextInput
         style={style.input}
         placeholder="Şifre"
         secureTextEntry={true}
-        onChange={(value) => setPassword(value)}
+        onChangeText={(value) => setPassword(value)}
       />
       <View>
-        <TouchableOpacity
-          style={style.loginButton}
-          onPress={() => navigation.navigate("Menu")}
-        >
+        <TouchableOpacity style={style.loginButton} onPress={() => control()}>
           <Text style={style.loginText}>Giriş Yap</Text>
         </TouchableOpacity>
         <TouchableOpacity
@@ -46,8 +58,15 @@ function Login({ navigation }) {
         </TouchableOpacity>
       </View>
       <View style={style.footer}>
-        <Text>© Yusuf Nadir Uzun - 2022</Text>
+        <Text>© Hasköy - 2022</Text>
       </View>
+      {selector.loading ? (
+        <View
+          style={{ position: "absolute", zIndex: 1, top: "50%", left: "45%" }}
+        >
+          <Button title="Solid" type="solid" loading />
+        </View>
+      ) : null}
     </SafeAreaView>
   );
 }
@@ -104,10 +123,10 @@ const style = StyleSheet.create({
     fontWeight: "700",
   },
   footer: {
-    position: "absolute",
-    fontSize: 14,
-    marginTop: "150%",
-    marginLeft: "30%",
+    position: "relative",
+    margin: "auto",
+    marginLeft: "40%",
+    bottom: "-15%",
   },
 });
 
