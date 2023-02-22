@@ -1,8 +1,16 @@
-const signin = "SIGNIN";
+const SIGNINSUCCESS = "SIGNINSUCCESS";
+const SIGNINSTARTED = "SIGNINSTARTED";
 
-export function SigninAction(result) {
+
+export function SigninStarted() {
   return {
-    type: signin,
-    result: result,
-  };
-}
+    type: SIGNINSTARTED,
+  }
+};
+
+
+export function SigninSuccess() {
+  return {
+    type: SIGNINSUCCESS,
+  }
+};

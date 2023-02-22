@@ -17,7 +17,7 @@ import { SignControl } from "../Methods/SignControl";
 import { SelectList } from "react-native-dropdown-select-list";
 import { Button, ThemeProvider } from "@rneui/themed";
 import { useSelector, useDispatch } from "react-redux";
-import { SigninAction } from "../../redux/actionTypes.js";
+import { SigninStarted,SigninSuccess } from "../../redux/actionTypes.js";
 
 const Signin = ({ navigation }) => {
   const selector = useSelector((state) => state.result);
@@ -41,12 +41,12 @@ const Signin = ({ navigation }) => {
 
   const control = async () => {
     
-    dispatch(SigninAction(true));
- 
+    
     const user = new User(name, email, phone, password, status);
-    if(await SignControl(user)){
-      if(await WriteNewUser(user)){
-        dispatch(SigninAction(false));
+    if (await SignControl(user)) {
+      dispatch(SigninStarted());
+      if (await WriteNewUser(user)) {
+        dispatch(SigninSuccess());
       }
     }
     // (await SignControl(user)) ? (await WriteNewUser(user)) ? null: dispatch(SigninAction(false)) : dispatch(SigninAction(false));
@@ -104,7 +104,7 @@ const Signin = ({ navigation }) => {
           <Text style={style.signButon}>Kaydol</Text>
         </TouchableOpacity>
       </ScrollView>
-      {selector.showLoading ? (
+      {selector.loading ? (
         <View
           style={{ position: "absolute", zIndex: 1, top: "50%", left: "45%" }}
         >

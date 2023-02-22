@@ -4,8 +4,8 @@ import { ref, set } from "firebase/database";
 // Create a new post reference with an auto-generated id
 function WriteNewUser(User) {
   
-  let result = true;
-
+  let result = false;
+  
   set(ref(database, "users/" + User.phone), {
     name: User.name || "",
     email: User.email || "",
@@ -15,7 +15,7 @@ function WriteNewUser(User) {
     created_at: `${new Date().getDay()}/${new Date().getMonth()}/${new Date().getFullYear()}`,
   })
     .then(() => {
-      result = false;
+      result = true;
     })
     .catch((error) => {
       console.log(error);

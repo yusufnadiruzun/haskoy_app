@@ -1,14 +1,17 @@
 let default_state = {
-    result: 1,
-    showLoading: false,
+    signin: false,
+    loading: false,
 }
 
 const reducer = (state = default_state, action) =>{
     switch(action.type){
-        case "SIGNIN":
-            return {...state, showLoading: action.result};
+        case "SIGNINSTARTED":
+            return {...state, loading: true};
             break;
         
+        case "SIGNINSUCCESS":
+            return {...state, signin: true, loading: false};
+            break;
     }
     return state;
 }
