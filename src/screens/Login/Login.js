@@ -12,9 +12,10 @@ import { Button } from "@rneui/themed";
 import { LoginControl } from "../../database/DatabaseOperations";
 import { LoginTextControl } from "../Methods/TextControl";
 import { useSelector, useDispatch } from "react-redux";
-import { LoginStarted, LoginSuccess } from "../../redux/actionTypes.js";
+import { LoginStarted, LoginSuccess,StopLoading } from "../../redux/actionTypes.js";
 
 function Login({ navigation }) {
+  
   const selector = useSelector((state) => state.result);
   const dispatch = useDispatch();
 
@@ -24,8 +25,14 @@ function Login({ navigation }) {
   const control = async () => {
     if (await LoginTextControl(userName, password)) {
       dispatch(LoginStarted());
-      (await LoginControl(userName, password)) && dispatch(LoginSuccess());
-      dispatch(LoginSuccess());
+      if (await LoginControl(userName, password)) {
+           dispatch(LoginSuccess());
+      }
+      else{
+        alert("Kullanıcı Adı veya Şifre Hatalı");
+        dispatch(StopLoading());
+      };
+      
     }
   };
   return (

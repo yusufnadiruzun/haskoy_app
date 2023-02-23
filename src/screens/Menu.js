@@ -67,7 +67,7 @@ const style = StyleSheet.create({
     height: 150,
   },
   ButtonBlocks: {
-    marginTop:'2%',
+    marginTop:'7%',
     padding:4,
     width: "80%",
     height: "80%",

@@ -43,9 +43,11 @@ const Signin = ({ navigation }) => {
     const user = new User(name, email, phone, password, status);
     if (await SignTextControl(user)) {
       dispatch(SigninStarted());
-      if (await WriteNewUser(user)) {
+       if(await WriteNewUser(user)){
         dispatch(SigninSuccess());
-      }
+       }
+        
+      
     }
     // (await SignControl(user)) ? (await WriteNewUser(user)) ? null: dispatch(SigninAction(false)) : dispatch(SigninAction(false));
   };

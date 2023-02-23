@@ -2,10 +2,10 @@ import { database } from "./Firebase.js";
 import { ref, set, child, get, onValue } from "firebase/database";
 
 // Create a new post reference with an auto-generated id
-function WriteNewUser(User) {
-  let result = false;
 
-  set(ref(database, "users/" + User.phone), {
+async function WriteNewUser(User) {
+
+ const bool = await set(ref(database, "users/" + User.phone), {
     name: User.name || "",
     email: User.email || "",
     phone: User.phone || "",
@@ -14,13 +14,14 @@ function WriteNewUser(User) {
     created_at: `${new Date().getDay()}/${new Date().getMonth()}/${new Date().getFullYear()}`,
   })
     .then(() => {
-      result = true;
+      console.log("then ici")
+      return true;
     })
     .catch((error) => {
-      console.log(error);
+      return false;
     });
 
-  return result;
+    return bool;
 }
 
 function LoginControl(userId, password) {
@@ -28,15 +29,17 @@ function LoginControl(userId, password) {
 
   const dbRef = ref(database);
 
-  get(child(dbRef, `users/${userId}/password/`))
+ const bool =  get(child(dbRef, `users/${userId}/password/`))
     .then((snapshot) => {
       if (snapshot.exists()) {
         console.log(snapshot.val() == password);
         return true;
-      } 
+      } else{
+        return false;
+      }
     })
     .catch((error) => {});
-  
+  return bool ;
 }
 
 /*

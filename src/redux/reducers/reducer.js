@@ -17,6 +17,9 @@ const reducer = (state = default_state, action) => {
     case "LOGINSUCCESS":
       return { ...state, login: true, loading: false };
       break;
+      case "STOPLOADING":
+      return { ...state, loading: false };
+      break;
   }
   return state;
 };

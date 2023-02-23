@@ -20,7 +20,8 @@ const style = StyleSheet.create({
     justifyContent:'center'
   },
   icon:{
-    fontSize:70
+    fontSize:70,
+    color:'#16B497'
   },
   Text: {
     padding: 30,
