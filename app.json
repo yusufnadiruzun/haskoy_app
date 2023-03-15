@@ -1,0 +1,19 @@
+{
+  "expo": {
+    "name": "haskoy_app",
+    "slug": "haskoy_app",
+    "version": "1.0.0",
+    "icon": "./assets/haskoy.png",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "splash": {
+      "image": "./assets/haskoy.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    }
+  },
+  "name": "haskoy_app",
+  "displayName": "Haskoy"
+  
+}
