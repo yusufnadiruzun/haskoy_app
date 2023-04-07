@@ -5,7 +5,7 @@ import { ref, set, child, get, onValue } from "firebase/database";
 
 async function WriteNewUser(User) {
 
- const bool = await set(ref(database, "users/" + User.phone), {
+  const bool = await set(ref(database, "users/" + User.phone), {
     name: User.name || "",
     email: User.email || "",
     phone: User.phone || "",
@@ -21,26 +21,41 @@ async function WriteNewUser(User) {
       return false;
     });
 
-    return bool;
+  return bool;
 }
 
 function LoginControl(userId, password) {
-  
+
 
   const dbRef = ref(database);
 
- const bool =  get(child(dbRef, `users/${userId}/password/`))
+  const bool = get(child(dbRef, `users/${userId}/password/`))
     .then((snapshot) => {
       if (snapshot.exists()) {
         console.log(snapshot.val() == password);
         return true;
-      } else{
+      } else {
         return false;
       }
     })
-    .catch((error) => {});
-  return bool ;
+    .catch((error) => { });
+  return bool;
 }
+
+const GetStudentList = () => {
+  return new Promise((resolve, reject) => {
+    const star = ref(database, "users/");
+    onValue(star, (snapshot) => {
+      const data = snapshot.val();
+      if (data !== null) {
+        const updatedList = Object.values(data).map((student) => student);
+        resolve(updatedList);
+      } else {
+        reject("Something went wrong while fetching student list");
+      }
+    });
+  });
+};
 
 /*
   const db = database;
@@ -91,4 +106,6 @@ function writeNewUser(User) {
 }
 */
 
-export { WriteNewUser, LoginControl };
+
+
+export { WriteNewUser, LoginControl, GetStudentList };
