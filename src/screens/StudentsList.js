@@ -1,69 +1,88 @@
 import { View, Text, StyleSheet, FlatList, SafeAreaView } from 'react-native'
-import { Card } from '@rneui/themed';
-import React from 'react'
-import Icon from 'react-native-vector-icons/FontAwesome5';
-import { CardDivider } from '@rneui/base/dist/Card/Card.Divider';
-import { CardTitle } from '@rneui/base/dist/Card/Card.Title';
+import React, { useEffect, useState } from 'react'
+import { Divider, Image } from '@rneui/themed'
+import { GetStudentList } from '../database/DatabaseOperations'
 
-const Items = [
-  {
-    name: "ali",
-    id: "1",
-  },
-  {
-    name: "sıla",
-    id: "2",
-  },
-  {
-    name: "emirhan",
-    id: "3",
-  },
-  {
-    name: "rick",
-    id: "4",
-  },
-]
+const img = 'https://images.unsplash.com/photo-1493612276216-ee3925520721?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80'
+
 
 const StudentsList = () => {
+  const [studentList, setStudentList] = useState([]);
+
+  useEffect(() => {
+    getStudents()
+  }, []);
+
+  const getStudents = () => {
+    GetStudentList().then((updatedList) => {
+      setStudentList(updatedList);
+    }).catch((error) => {
+      console.log(error);
+    });
+  }
+
+
+
   return (
-    <SafeAreaView style={style.container}>
-      <FlatList contentContainerStyle={style.contentContainerStyle}
-        data={Items}
-        renderItem={({ item }) => (
-          <Card>
-            <Card.Title>{item.name}</Card.Title>
-            <CardDivider />
-          </Card>
-        )}
-        keyExtractor={item => item.id}
-
-
-
-      />
-    </SafeAreaView>
+    <View style={style.container}>
+      <SafeAreaView style={{ flex: 1 }}>
+        <View style={{ paddingLeft: 10, paddingTop: 40, paddingBottom: 10 }}>
+          <Text style={style.header}>Öğrenciler</Text>
+        </View>
+        <Divider style={style.divider} />
+        <FlatList
+          contentContainerStyle={style.contentContainerStyle}
+          data={studentList}
+          renderItem={({ item }) => (
+            <View style={{ flexDirection: 'row', paddingBottom: 15 }}>
+              <Image source={{ uri: img }} style={style.photoStyle} resizeMode='cover' />
+              <View style={{ justifyContent: 'center' }}>
+                <Text style={style.title}>{item['name']}</Text>
+                <Text style={{ color: 'gray' }}>{item['status']}</Text>
+              </View>
+            </View>
+          )}
+          keyExtractor={item => item['phone']}
+        />
+      </SafeAreaView>
+    </View>
   )
 }
+
 const style = StyleSheet.create({
+  header: {
+    fontSize: 30,
+    fontWeight: 'bold',
+  },
+  divider: {
+    backgroundColor: 'teal',
+    height: 2,
+    marginLeft: 10,
+  },
+  photoStyle: {
+    height: 70,
+    width: 70,
+    borderRadius: 40,
+    marginRight: 10,
+  },
   container: {
     width: '100%',
     height: '100%',
-    alignItems: 'center',
-    alignContent: 'center',
-    justifyContent: 'center'
+    alignItems: 'flex-start',
+    alignContent: 'flex-start',
+    justifyContent: 'flex-start',
   },
   contentContainerStyle: {
-    width: '100%',
-    height: '100%',
-    alignItems: 'center',
-    alignContent: 'center',
-    justifyContent: 'center'
+    alignItems: 'flex-start',
+    alignContent: 'flex-start',
+    paddingVertical: 30,
+    paddingHorizontal: 12,
   },
   icon: {
     fontSize: 70,
     color: '#16B497'
   },
-  Text: {
-    padding: 30,
+  title: {
     fontSize: 20,
   },
 })
