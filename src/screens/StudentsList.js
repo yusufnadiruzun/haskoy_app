@@ -1,13 +1,15 @@
 import { View, Text, StyleSheet, FlatList, SafeAreaView } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import { Divider, Image } from '@rneui/themed'
+import { Divider, Icon, Image } from '@rneui/themed'
 import { GetStudentList } from '../database/DatabaseOperations'
+import { useNavigation } from '@react-navigation/native'
 
 const img = 'https://images.unsplash.com/photo-1493612276216-ee3925520721?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80'
 
 
 const StudentsList = () => {
   const [studentList, setStudentList] = useState([]);
+  const navigation = useNavigation()
 
   useEffect(() => {
     getStudents()
@@ -25,14 +27,16 @@ const StudentsList = () => {
 
   return (
     <View style={style.container}>
-      <SafeAreaView style={{ flex: 1 }}>
-        <View style={{ paddingLeft: 10, paddingTop: 40, paddingBottom: 10 }}>
+      <SafeAreaView style={{ flex: 1, width: '100%', }}>
+        <View style={{ paddingLeft: 10, paddingTop: 40, paddingBottom: 10, flexDirection: 'row', alignItems: 'center' }}>
+          <Icon name='arrow-left' type='feather' size={30} onPress={() => navigation.goBack()} />
           <Text style={style.header}>Öğrenciler</Text>
         </View>
         <Divider style={style.divider} />
         <FlatList
           contentContainerStyle={style.contentContainerStyle}
           data={studentList}
+          showsVerticalScrollIndicator={false}
           renderItem={({ item }) => (
             <View style={{ flexDirection: 'row', paddingBottom: 15 }}>
               <Image source={{ uri: img }} style={style.photoStyle} resizeMode='cover' />
@@ -58,6 +62,7 @@ const style = StyleSheet.create({
     backgroundColor: 'teal',
     height: 2,
     marginLeft: 10,
+    marginRight: 100,
   },
   photoStyle: {
     height: 70,
