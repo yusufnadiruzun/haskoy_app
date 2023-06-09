@@ -1,4 +1,5 @@
 function SignTextControl(User) {
+  
     setTimeout(() => {}, 300);
     const { name, email, phone, password, status } = User;
   

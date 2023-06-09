@@ -1,13 +1,13 @@
 import { View, Text, StyleSheet, FlatList, SafeAreaView } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { Divider, Icon, Image } from '@rneui/themed'
-import { GetStudentList } from '../database/DatabaseOperations'
 import { useNavigation } from '@react-navigation/native'
 
 const img = 'https://images.unsplash.com/photo-1493612276216-ee3925520721?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80'
 
 
 const StudentsList = () => {
+  /*
   const [studentList, setStudentList] = useState([]);
   const navigation = useNavigation()
 
@@ -51,6 +51,12 @@ const StudentsList = () => {
       </SafeAreaView>
     </View>
   )
+    */
+   return (
+    <SafeAreaView>
+      <Text className="text-red-500">StudentsList</Text>
+      </SafeAreaView>
+   )
 }
 
 const style = StyleSheet.create({

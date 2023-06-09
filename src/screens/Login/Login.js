@@ -9,31 +9,21 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { Button } from "@rneui/themed";
-import { LoginControl } from "../../database/DatabaseOperations";
-import { LoginTextControl } from "../Methods/TextControl";
 import { useSelector, useDispatch } from "react-redux";
-import { LoginStarted, LoginSuccess,StopLoading } from "../../redux/actionTypes.js";
+import { LoginControl } from "../../helpers/auth/auth";
 
 function Login({ navigation }) {
   
   const selector = useSelector((state) => state.result);
   const dispatch = useDispatch();
 
-  const [userName, setUserName] = useState("");
+  const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
 
   const control = async () => {
-    if (await LoginTextControl(userName, password)) {
-      dispatch(LoginStarted());
-      if (await LoginControl(userName, password)) {
-           dispatch(LoginSuccess());
-      }
-      else{
-        alert("Kullanıcı Adı veya Şifre Hatalı");
-        dispatch(StopLoading());
-      };
-      
-    }
+
+      LoginControl(phone, password);
+    
   };
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -45,7 +35,7 @@ function Login({ navigation }) {
       <TextInput
         style={style.input}
         placeholder="Kullanıcı Adı(5__ ___ __ __)"
-        onChangeText={(value) => setUserName(value)}
+        onChangeText={(value) => setPhone(value)}
       />
       <TextInput
         style={style.input}

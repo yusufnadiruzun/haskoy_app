@@ -3,7 +3,7 @@ import { ScrollView, StyleSheet, Text, View } from "react-native";
 
 import Login from "./src/screens/Login/Login";
 import Menu from "./src/screens/Menu";
-import Signin from "./src/screens/Login/Signin";
+import Signup from "./src/screens/Login/Signup";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import StudentsList from "./src/screens/StudentsList";
@@ -50,7 +50,7 @@ function Navigator() {
             }}
           >
             <Stack.Screen name="Login" component={Login} />
-            <Stack.Screen name="Sign" component={Signin} />
+            <Stack.Screen name="Sign" component={Signup} />
             
           </Stack.Navigator>
         </NavigationContainer>

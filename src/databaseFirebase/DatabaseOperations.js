@@ -1,3 +1,5 @@
+
+/*
 import { database } from "./Firebase.js";
 import { ref, set, child, get, onValue } from "firebase/database";
 
@@ -25,8 +27,7 @@ async function WriteNewUser(User) {
 }
 
 function LoginControl(userId, password) {
-
-
+  
   const dbRef = ref(database);
 
   const bool = get(child(dbRef, `users/${userId}/password/`))
@@ -43,6 +44,7 @@ function LoginControl(userId, password) {
 }
 
 const GetStudentList = () => {
+
   return new Promise((resolve, reject) => {
     const star = ref(database, "users/");
     onValue(star, (snapshot) => {
@@ -104,8 +106,9 @@ function writeNewUser(User) {
       // The write failed...
     });
 }
-*/
+
 
 
 
 export { WriteNewUser, LoginControl, GetStudentList };
+*/

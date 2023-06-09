@@ -10,16 +10,15 @@ import {
 import React, { useEffect } from "react";
 import SignBlocks from "../../components/SignBlocks";
 import Icon from "react-native-vector-icons/FontAwesome";
-import { WriteNewUser } from "../../database/DatabaseOperations";
 import User from "../../Objects/User";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { SignTextControl } from "../Methods/TextControl";
 import { SelectList } from "react-native-dropdown-select-list";
 import { Button, ThemeProvider } from "@rneui/themed";
 import { useSelector, useDispatch } from "react-redux";
-import { SigninStarted, SigninSuccess } from "../../redux/actionTypes.js";
+import { SignupControl } from "../../helpers/auth/auth";
 
-const Signin = ({ navigation }) => {
+const Signup = ({ navigation }) => {
+
   const selector = useSelector((state) => state.result);
   const dispatch = useDispatch();
 
@@ -40,15 +39,10 @@ const Signin = ({ navigation }) => {
   const [status, setStatus] = React.useState("");
 
   const control = async () => {
+    
     const user = new User(name, email, phone, password, status);
-    if (await SignTextControl(user)) {
-      dispatch(SigninStarted());
-       if(await WriteNewUser(user)){
-        dispatch(SigninSuccess());
-       }
-        
-      
-    }
+    SignupControl(user);
+   
     // (await SignControl(user)) ? (await WriteNewUser(user)) ? null: dispatch(SigninAction(false)) : dispatch(SigninAction(false));
   };
 
@@ -165,4 +159,4 @@ const style = StyleSheet.create({
   },
 });
 
-export default Signin;
+export default Signup;

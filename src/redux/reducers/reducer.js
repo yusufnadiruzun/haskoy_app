@@ -1,6 +1,8 @@
 let default_state = {
   login: false,
   loading: false,
+  usertoken: null,
+  jwttoken: null,
 };
 
 const reducer = (state = default_state, action) => {
