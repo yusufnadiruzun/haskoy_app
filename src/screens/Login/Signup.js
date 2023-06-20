@@ -20,7 +20,7 @@ import { SignupControl } from "../../helpers/auth/auth";
 const Signup = ({ navigation }) => {
 
   const selector = useSelector((state) => state.result);
-  const dispatch = useDispatch();
+
 
   const data = [
     { key: "Tekamül Altı", value: "Tekamül Altı" },
@@ -32,7 +32,7 @@ const Signup = ({ navigation }) => {
     { key: "Personel", value: "Personel" },
   ];
   
-  const [email, setEmail] = React.useState("");
+  const [mail, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [name, setName] = React.useState("");
   const [phone, setPhone] = React.useState("");
@@ -40,7 +40,7 @@ const Signup = ({ navigation }) => {
 
   const control = async () => {
     
-    const user = new User(name, email, phone, password, status);
+    const user = new User(name, mail, phone, password, status);
     SignupControl(user);
    
     // (await SignControl(user)) ? (await WriteNewUser(user)) ? null: dispatch(SigninAction(false)) : dispatch(SigninAction(false));

@@ -15,7 +15,7 @@ import { LoginControl } from "../../helpers/auth/auth";
 function Login({ navigation }) {
   
   const selector = useSelector((state) => state.result);
-  const dispatch = useDispatch();
+  
 
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");

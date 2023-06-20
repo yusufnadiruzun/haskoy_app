@@ -1,6 +1,6 @@
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import MenuItem from "../components/MenuItem";
+import MenuItem from "../../components/MenuItem";
 import { View, Text, Image, StyleSheet } from "react-native";
 
 const Menu = ({ navigation }) => {
@@ -8,7 +8,7 @@ const Menu = ({ navigation }) => {
     <SafeAreaView>
       <View style={style.Icon}>
         <Image
-          source={require("../assets/haskoy.png")}
+          source={require("../../assets/haskoy.png")}
           style={style.HaskoyIcon}
         />
       </View>

@@ -15,23 +15,24 @@ function SignTextControl(User) {
       alert("Telefon Numarası 10 Haneli Olmalıdır");
       return false;
     }
-    if (
-      !String(email)
-        .toLowerCase()
-        .match(
-          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-        )
-    ) {
-      alert("Lütfen Geçerli Bir Mail Adresi Giriniz");
-      return false;
-    }
+    // if (
+    //   !String(email)
+    //     .toLowerCase()
+    //     .match(
+    //       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    //     )
+    // ) {
+    //   alert("Lütfen Geçerli Bir Mail Adresi Giriniz");
+    //   return false;
+    // }
   
     return true;
   }
   
-  function LoginTextControl(phone,password) {
+  function LoginTextControl(user) {
     
-  
+    const { phone, password } = user;
+    
     if (phone === "" || password === "") {
       alert("Lütfen Boş Alan Bırakmayınız");
       return false;
