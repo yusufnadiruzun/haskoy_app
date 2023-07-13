@@ -35,12 +35,13 @@ const Signup = ({ navigation }) => {
   const [mail, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [name, setName] = React.useState("");
+  const [surname, setSurname] = React.useState("");
   const [phone, setPhone] = React.useState("");
   const [status, setStatus] = React.useState("");
 
   const control = async () => {
     
-    const user = new User(name, mail, phone, password, status);
+    const user = new User(name,surname, mail, phone, password, status);
     SignupControl(user);
    
     // (await SignControl(user)) ? (await WriteNewUser(user)) ? null: dispatch(SigninAction(false)) : dispatch(SigninAction(false));
@@ -62,11 +63,15 @@ const Signup = ({ navigation }) => {
           source={require("../../assets/haskoy.png")}
           style={style.haskoyIcon}
         />
-
         <SignBlocks
           icon="user"
-          placeholder="İsim Soyisim"
+          placeholder="İsim"
           changeFunc={(name) => setName(name)}
+        ></SignBlocks>
+        <SignBlocks
+          icon="map-signs"
+          placeholder="Soyisim"
+          changeFunc={(name) => setSurname(name)}
         ></SignBlocks>
         <SignBlocks
           icon="lock"

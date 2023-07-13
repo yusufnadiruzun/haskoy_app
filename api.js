@@ -22,9 +22,10 @@ class Api {
     }
 
     async signup(user) {
-        const {name, phone, mail,password, status, photourl} = user;
+        const {name,surname ,phone, mail,password, status, photourl} = user;
         return await api.post("/auth/v1/signup", {
             name,
+            surname,
             phone,
             password,
             mail,
