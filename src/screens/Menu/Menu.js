@@ -12,8 +12,7 @@ const Menu = ({ navigation }) => {
           className="w-1/2 h-32"
         />
       </View>
-        
-        <View className="flex-row flex-wrap mt-10 justify-center content-stretch" >
+        <View className="flex-row flex-wrap mt-10 justify-center " >
           <MenuItem
             name={"Yoklama"}
             where={() => navigation.navigate("InspectionMenu")}

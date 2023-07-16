@@ -26,36 +26,44 @@ function Login({ navigation }) {
     
   };
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView >
+      <View className="items-center mt-4">
       <Image
         source={require("../../assets/haskoy.png")}
-        style={style.haskoyIcon}
+        className="w-1/2 h-28 "
       />
-      <Text style={style.welcome}>Hasköy'e Hoşgeldiniz</Text>
+      
+      </View>
+
+      <Text className = "m-auto mt-7 font-semibold text-2xl text-haskoyGreen">Hasköy'e Hoşgeldiniz</Text>
+      
+      <View className="flex items-center justify-center mt-10">
       <TextInput
-        style={style.input}
+        className=" border-b border-haskoyGreen rounded-lg p-2 m-3 w-3/4 h-16 "
         placeholder="Kullanıcı Adı(5__ ___ __ __)"
         onChangeText={(value) => setPhone(value)}
       />
+
       <TextInput
-        style={style.input}
+        className="border-b border-haskoyGreen rounded-lg p-2 mt-3 w-3/4 h-16"
         placeholder="Şifre"
         secureTextEntry={true}
         onChangeText={(value) => setPassword(value)}
       />
-      <View>
-        <TouchableOpacity style={style.loginButton} onPress={() => control()}>
-          <Text style={style.loginText}>Giriş Yap</Text>
+      </View>
+      <View className="items-center">
+        <TouchableOpacity className="border-solid rounded-lg bg-haskoyGreen mt-10 w-2/4 " onPress={() => control()}>
+          <Text className="text-center text-white font-bold text-lg">Giriş Yap</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={style.signButton}
+          className="flex items-center justify-center mt-2"
           onPress={() => navigation.navigate("Sign")}
         >
-          <Text style={style.signText}>Hala Hesabınız Yokmu ?</Text>
+          <Text className="font-bold">Hala Hesabınız Yokmu ?</Text>
         </TouchableOpacity>
       </View>
-      <View style={style.footer}>
-        <Text>© Hasköy - 2022</Text>
+      <View className="items-center bottom-0 mt-20" >
+        <Text className="">© YNDR - 2022</Text>
       </View>
       {selector.loading ? (
         <View
@@ -67,64 +75,5 @@ function Login({ navigation }) {
     </SafeAreaView>
   );
 }
-const style = StyleSheet.create({
-  haskoyIcon: {
-    width: 250,
-    height: 200,
-    marginLeft: "20%",
-  },
-  welcome: {
-    fontSize: 30,
-    marginLeft: "18%",
-    fontWeight: "500",
-    color: "#16B497",
-  },
-  input: {
-    padding: 10,
-    marginLeft: "13%",
-    marginTop: "10%",
-    borderStyle: "solid",
-    width: "75%",
-    borderBottomWidth: 1,
-    borderBottomColor: "#59C1CC",
-  },
-  loginButton: {
-    width: 270,
-    height: 35,
-    marginTop: "10%",
-    marginLeft: "20%",
-    backgroundColor: "#16B497",
-    borderStyle: "solid",
-    borderWidth: 2,
-    borderColor: "#16B497",
-    borderRadius: 15,
-  },
-  signButton: {
-    width: 300,
-    height: 20,
-    marginTop: "3%",
-    marginLeft: "3%",
-    flexDirection: "row",
-  },
-  loginText: {
-    textAlign: "center",
-    color: "white",
-    fontWeight: "800",
-    marginTop: "0%",
-    fontSize: 20,
-  },
-  signText: {
-    textAlign: "center",
-    color: "black",
-    marginLeft: "40%",
-    fontWeight: "700",
-  },
-  footer: {
-    position: "relative",
-    margin: "auto",
-    marginLeft: "40%",
-    bottom: "-15%",
-  },
-});
 
 export default Login;
