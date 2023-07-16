@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 
 import Login from "./src/screens/Login/Login";
-import Menu from "./src/screens/menuScreens/Menu";
+import Menu from "./src/screens/Menu/Menu";
 import Signup from "./src/screens/Login/Signup";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -23,18 +23,18 @@ const Stack = createNativeStackNavigator();
 function Navigator() {
 
   const selector = useSelector((state)=>(state.result))
-  useEffect(() => {
+  // useEffect(() => {
     
-    AsyncStorage.getItem('usertoken').then((value) => {
-      if (value == null) {
-        AsyncStorage.setItem('usertoken', '$2a$10$718Hk42SNceV0OAI6tUMTesY/OCMnPI0WBlRWf79GtOHcEnVV0QXu');
-      }
-      else{
-        LoginControl(value)
-      }
-    });
+  //   AsyncStorage.getItem('usertoken').then((value) => {
+  //     if (value == null) {
+  //       AsyncStorage.setItem('usertoken', '$2a$10$718Hk42SNceV0OAI6tUMTesY/OCMnPI0WBlRWf79GtOHcEnVV0QXu');
+  //     }
+  //     else{
+  //       LoginControl(value)
+  //     }
+  //   });
    
-  });
+  // });
   
   return (
     <View style={{ flex: 1 }}>

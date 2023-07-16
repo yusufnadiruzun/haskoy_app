@@ -1,26 +1,16 @@
-
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity} from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
-const MenuItem = ({ name,where }) => {
+const MenuItem = ({ name, where }) => {
   return (
-    <TouchableOpacity
-      style={{
-        width: "45%",
-        height: "20%",
-        backgroundColor: "white",
-        borderStyle: "solid",
-        borderWidth: 1,
-        borderColor: "gray",
-        borderRadius: 10,
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-      onPress={where}
-     
-    >
-      <Text>{name}</Text>
-    </TouchableOpacity>
+    
+      <TouchableOpacity
+        className="border-2 border-gray-1000 rounded-lg p-0 m-2 w-1/3 h-16 justify-center items-center"
+        onPress={where}
+      >
+        <Text className="font-bold">{name}</Text>
+      </TouchableOpacity>
+
   );
 };
 

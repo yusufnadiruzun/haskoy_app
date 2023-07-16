@@ -5,15 +5,15 @@ import { View, Text, Image, StyleSheet } from "react-native";
 
 const Menu = ({ navigation }) => {
   return (
-    <SafeAreaView>
-      <View style={style.Icon}>
+    <View className="container">
+      <View className="items-center mt-2">
         <Image
           source={require("../../assets/haskoy.png")}
-          style={style.HaskoyIcon}
+          className="w-1/2 h-32"
         />
       </View>
-      <View style={{ flexWrap: "wrap" }}>
-        <View style={style.ButtonBlocks}>
+        
+        <View className="flex-row flex-wrap mt-10 justify-center content-stretch" >
           <MenuItem
             name={"Yoklama"}
             where={() => navigation.navigate("InspectionMenu")}
@@ -46,36 +46,10 @@ const Menu = ({ navigation }) => {
             name={"Haftanın Yarışması"}
             where={() => navigation.navigate("Competition")}
           ></MenuItem>
-          
-          
-          
         </View>
-      </View>
-    </SafeAreaView>
+        </View>
+    
   );
 };
 
-const style = StyleSheet.create({
-  Icon: {
-    width: "100%",
-    height: "20%",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  HaskoyIcon: {
-    width: 250,
-    height: 150,
-  },
-  ButtonBlocks: {
-    marginTop:'7%',
-    padding:4,
-    width: "80%",
-    height: "80%",
-    flexDirection: "row", // yan yana gelmesini sağlayan kod
-    flexWrap: "wrap", // yer dolduğu zaman aşagı alan kod, hem containerde hemde iç elementte olmalı
-    alignContent:'stretch',// yukarıdan aşağıda 2 buton arasındaki uzaklık ayarı
-    justifyContent:'space-around', // yan yana  2 buton arasındaki uzaklık ayarı
-    marginHorizontal: "10%",
-  },
-});
 export default Menu;

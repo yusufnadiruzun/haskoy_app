@@ -1,5 +1,5 @@
 let default_state = {
-  login: false,
+  login: true,
   loading: false,
   usertoken: null,
   jwttoken: null,
