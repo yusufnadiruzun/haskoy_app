@@ -53,7 +53,7 @@ const Signup = ({ navigation }) => {
         <TouchableOpacity>
           <Icon
             name="arrow-left"
-            className="mt-5 ml-5"
+            style={{ marginLeft: "3%", marginTop: "3%" }}
             size={20}
             color="#16B497"
             onPress={() => navigation.navigate("Login")}
@@ -61,7 +61,7 @@ const Signup = ({ navigation }) => {
         </TouchableOpacity>
         <Image
           source={require("../../assets/haskoy.png")}
-          className="w-1/2 h-28 mx-auto mt-10"
+          className="w-1/2 h-28 mx-auto mt-7"
         />
         <SignBlocks
           icon="user"

@@ -5,12 +5,18 @@ import { SignTextControl } from "../../Methods/TextControl";
 import store from "../../redux/index"; // Import your Redux store
 
 export const LoginControl = async (user) => {
+
   const { usertoken } = user;
   console.log(usertoken);
   if(usertoken != ""){
+    if(LoginTextControl(user)){
+    console.log("first if")
     await api.login(user).then(result => store.dispatch(LoginSuccess())).catch(err => console.log(err));
-  }else{
+    }
+  }
+  else{
   if (await LoginTextControl(user)) {
+    console.log("second if")
     store.dispatch(LoginStarted()); // Dispatch LoginStarted action
     await api.login(user).then(result => store.dispatch(LoginSuccess())).catch(error =>  alert("Kullanıcı Adı veya Şifre Hatalı"));
     store.dispatch(StopLoading()); // Dispatch StopLoading action

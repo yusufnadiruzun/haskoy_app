@@ -33,7 +33,8 @@ function SignTextControl(User) {
     
     const { phone, password } = user;
     
-    if (phone === "" || password === "") {
+    
+    if (phone === "" || password === "" || password== undefined || phone==undefined) {
       alert("Lütfen Boş Alan Bırakmayınız");
       return false;
     }
