@@ -48,12 +48,12 @@ const Signup = ({ navigation }) => {
   };
 
   return (
-    <SafeAreaView>
-      <ScrollView style={style.scrollView}>
+    <SafeAreaView >
+      <ScrollView>
         <TouchableOpacity>
           <Icon
             name="arrow-left"
-            style={style.icon}
+            className="mt-5 ml-5"
             size={20}
             color="#16B497"
             onPress={() => navigation.navigate("Login")}
@@ -61,7 +61,7 @@ const Signup = ({ navigation }) => {
         </TouchableOpacity>
         <Image
           source={require("../../assets/haskoy.png")}
-          style={style.haskoyIcon}
+          className="w-1/2 h-28 mx-auto mt-10"
         />
         <SignBlocks
           icon="user"
@@ -99,8 +99,8 @@ const Signup = ({ navigation }) => {
           boxStyles={{ width: "80%", marginLeft: "10%", marginTop: "2%" }}
         ></SelectList>
 
-        <TouchableOpacity style={style.button} onPress={() => control()}>
-          <Text style={style.signButon}>Kaydol</Text>
+        <TouchableOpacity className="border-solid rounded-lg mx-auto bg-haskoyOrange mt-7 p-1 mb-4 w-2/4" onPress={() => control()}>
+          <Text className="text-white text-center text-xl font-bold">Kaydol</Text>
         </TouchableOpacity>
       </ScrollView>
       {selector.loading ? (
@@ -114,54 +114,6 @@ const Signup = ({ navigation }) => {
   );
 };
 
-const style = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: StatusBar.currentHeight,
-  },
-  signButon: {
-    textAlign: "center",
 
-    color: "white",
-    fontWeight: "800",
-    marginTop: "0%",
-    fontSize: 20,
-  },
-  button: {
-    width: 270,
-    height: 35,
-    marginTop: "5%",
-    padding: 3,
-    marginLeft: "15%",
-    backgroundColor: "#F1701C",
-    borderStyle: "solid",
-    borderWidth: 2,
-    borderColor: "#EC823D",
-    borderRadius: 15,
-  },
-  text: {
-    fontSize: 30,
-    marginLeft: "10%",
-    fontWeight: "500",
-    color: "#F1701C",
-    marginTop: "2%",
-  },
-  scrollView: {
-    marginHorizontal: 20,
-  },
-  haskoyIcon: {
-    width: 200,
-    height: 150,
-    marginLeft: "23%",
-  },
-  icon: {
-    marginLeft: "5%",
-    marginTop: "5%",
-  },
-  block: {
-    marginHorizontal: "2%",
-    marginTop: "0%",
-  },
-});
 
 export default Signup;
