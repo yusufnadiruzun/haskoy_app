@@ -23,18 +23,24 @@ const Stack = createNativeStackNavigator();
 function Navigator() {
 
   const selector = useSelector((state)=>(state.result))
-  // useEffect(() => {
-    
-  //   AsyncStorage.getItem('usertoken').then((value) => {
-  //     if (value == null) {
-  //       AsyncStorage.setItem('usertoken', '$2a$10$718Hk42SNceV0OAI6tUMTesY/OCMnPI0WBlRWf79GtOHcEnVV0QXu');
-  //     }
-  //     else{
-  //       LoginControl(value)
-  //     }
-  //   });
+  useEffect(() => {
+    const user = {
+      phone: "5531503592",
+      password: "123456",
+      usertoken: "$2a$10$9to60RHWgYS5DO17twbS6.XLydpBCQFuiscB.DdvKjKRS2VFjv2p.",
+    }
+    LoginControl(user)
+    // AsyncStorage.getItem('usertoken').then((value) => {
+    //   if (value == null) {
+    //     AsyncStorage.setItem('usertoken', '$2a$10$8xcqi/c9rUfXlx.qW8bd/.F20y97Nikoa7XwVClvk7O7O.A9BWNym');
+
+    //   }
+    //   else{
+    //     LoginControl(value)
+    //   }
+    // });
    
-  // });
+  }, []);
   
   return (
     <View style={{ flex: 1 }}>

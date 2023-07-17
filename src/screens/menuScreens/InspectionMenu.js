@@ -6,6 +6,7 @@ import MenuItem from "../../components/MenuItem";
 import { useEffect } from "react";
 
 const InspectionMenu = () => {
+  
   return (
     <SafeAreaView className="container">
       <MenuItem></MenuItem>

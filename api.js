@@ -1,11 +1,10 @@
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: "http://10.0.2.2:5001/api",
+    //baseURL: "http://10.0.2.2:5001/api",
+    baseURL:"http://13.53.197.4:5001/api",
     Headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",
     },
     
 });
@@ -14,6 +13,7 @@ class Api {
 
     async login(user) {
         const {phone, password,usertoken} = user;
+        console.log(phone, password,usertoken)
         return await api.post("/auth/v1/login", {
             phone,
             password,

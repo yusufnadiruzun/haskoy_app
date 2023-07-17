@@ -3,23 +3,30 @@ import {LoginStarted,LoginSuccess,StopLoading,SigninStarted,SigninSuccess,} from
 import { LoginTextControl } from "../../Methods/TextControl";
 import { SignTextControl } from "../../Methods/TextControl";
 import store from "../../redux/index"; // Import your Redux store
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const LoginControl = async (user) => {
 
-  const { usertoken } = user;
-  console.log(usertoken);
+  store.dispatch(LoginStarted()); // Dispatch LoginStarted action
+  const usertoken = user.usertoken;
   if(usertoken != ""){
     if(LoginTextControl(user)){
-    console.log("first if")
     await api.login(user).then(result => store.dispatch(LoginSuccess())).catch(err => console.log(err));
     }
   }
   else{
   if (await LoginTextControl(user)) {
-    console.log("second if")
-    store.dispatch(LoginStarted()); // Dispatch LoginStarted action
-    await api.login(user).then(result => store.dispatch(LoginSuccess())).catch(error =>  alert("Kullanıcı Adı veya Şifre Hatalı"));
-    store.dispatch(StopLoading()); // Dispatch StopLoading action
+    try {
+      const result = await api.login(user);
+      await AsyncStorage.setItem('usertoken', result.data.userToken);
+      store.dispatch(LoginSuccess(result.data.userToken));
+    } catch (error) {
+      alert("Kullanıcı Adı veya Şifre Hatalı");
+    } finally {
+      store.dispatch(StopLoading());
+      const token = await AsyncStorage.getItem('usertoken');
+      console.log("AsyncStorage'den okunan usertoken: ", token);
+    }
   }
 }
 };

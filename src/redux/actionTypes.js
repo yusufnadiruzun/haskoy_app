@@ -22,9 +22,10 @@ export function LoginStarted() {
   };
 }
 
-export function LoginSuccess() {
+export function LoginSuccess(usertoken) {
   return {
     type: LOGINSUCCESS,
+    usertoken: usertoken,
   };
 }
 
