@@ -4,9 +4,10 @@ import MenuItem from "../../components/MenuItem";
 import { View, Text, Image, StyleSheet } from "react-native";
 
 const Menu = ({ navigation }) => {
+  
   return (
     <View className="container">
-      <View className="items-center mt-2">
+      <View className="items-center mt-10">
         <Image
           source={require("../../assets/haskoy.png")}
           className="w-1/2 h-32"

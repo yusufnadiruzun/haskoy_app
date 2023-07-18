@@ -15,33 +15,44 @@ import Wish from "./src/screens/menuScreens/Wish";
 import Temp from "./src/screens/menuScreens/Temp";
 import Competition from "./src/screens/menuScreens/Competition";
 import { useSelector } from "react-redux";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { LoginControl } from "./src/helpers/auth/auth";
-
+import User from "./src/Objects/User";
 const Stack = createNativeStackNavigator();
 
 function Navigator() {
-
-  const selector = useSelector((state)=>(state.result))
+  const selector = useSelector((state) => state.result);
   useEffect(() => {
-    const user = {
-      phone: "5531503592",
-      password: "123456",
-      usertoken: "$2a$10$9to60RHWgYS5DO17twbS6.XLydpBCQFuiscB.DdvKjKRS2VFjv2p.",
-    }
-    LoginControl(user)
-    // AsyncStorage.getItem('usertoken').then((value) => {
-    //   if (value == null) {
-    //     AsyncStorage.setItem('usertoken', '$2a$10$8xcqi/c9rUfXlx.qW8bd/.F20y97Nikoa7XwVClvk7O7O.A9BWNym');
-
-    //   }
-    //   else{
-    //     LoginControl(value)
-    //   }
-    // });
-   
-  }, []);
+    // const user = {
+    //   phone: "5531503592",
+    //   password: "123456",
+    //   usertoken: "$2a$10$9to60RHWgYS5DO17twbS6.XLydpBCQFuiscB.DdvKjKRS2VFjv2p.",
+    // }
+    // LoginControl(user)
   
+    const getStorageData = async () => {
+
+     const user = new User();
+     await AsyncStorage.setItem(
+        "usertoken",
+        "$2a$10$8xcqi/c9rUfXlx.qW8bd/.F20y97Nikoa7XwVClvk7O7O.A9BWNym"
+      );
+       user.usertoken =  await AsyncStorage.getItem('usertoken')
+       await AsyncStorage.getItem("usertoken").then((value) => {
+        if (value == null) {
+          AsyncStorage.setItem(
+            "usertoken",
+            "$2a$10$8xcqi/c9rUfXlx.qW8bd/.F20y97Nikoa7XwVClvk7O7O.A9BWNym"
+          );
+          LoginControl(user)
+        } else {
+          LoginControl(user);
+        }
+      });
+    };
+    getStorageData();
+  }, []);
+
   return (
     <View style={{ flex: 1 }}>
       {selector.login ? (
@@ -71,7 +82,6 @@ function Navigator() {
           >
             <Stack.Screen name="Login" component={Login} />
             <Stack.Screen name="Sign" component={Signup} />
-            
           </Stack.Navigator>
         </NavigationContainer>
       )}

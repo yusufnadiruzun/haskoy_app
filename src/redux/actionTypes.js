@@ -3,7 +3,7 @@ const SIGNINSTARTED = "SIGNINSTARTED";
 const LOGINSTARTED = "LOGINSTARTED";
 const LOGINSUCCESS = "LOGINSUCCESS";
 const STOPLOADING = "STOPLOADING";
-
+const GETUSERPERMISSIONS = "GETUSERPERMISSIONS";
 
 export function SigninStarted() {
   return {
@@ -32,5 +32,12 @@ export function LoginSuccess(usertoken) {
 export function StopLoading() {
   return {
     type: STOPLOADING,
+  };
+}
+
+export function getUserPermissions(permissions) {
+  return {
+    type: GETUSERPERMISSIONS,
+    permissions: permissions,
   };
 }

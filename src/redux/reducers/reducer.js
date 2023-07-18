@@ -1,8 +1,9 @@
 let default_state = {
   login: false,
   loading: false,
-  usertoken: "",
+  usertoken: null,
   jwttoken: null,
+  userPermissions :[]
 };
 
 const reducer = (state = default_state, action) => {
@@ -21,6 +22,9 @@ const reducer = (state = default_state, action) => {
       break;
       case "STOPLOADING":
       return { ...state, loading: false };
+      break;
+    case "GETUSERPERMISSIONS":
+      return { ...state, userPermissions: action.permissions };
       break;
   }
   return state;
