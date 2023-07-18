@@ -7,7 +7,7 @@ import Signup from "./src/screens/Login/Signup";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import StudentsList from "./src/screens/menuScreens/StudentsList";
-import InspectionMenu from "./src/screens/menuScreens/InspectionMenu";
+import InspectionMenu from "./src/screens/menuScreens/Inspection/InspectionMenu";
 import Cleaner from "./src/screens/menuScreens/Cleaner";
 import Guard from "./src/screens/menuScreens/Guard";
 import FoodList from "./src/screens/menuScreens/FoodList";

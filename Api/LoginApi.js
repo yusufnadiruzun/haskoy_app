@@ -1,15 +1,7 @@
-import axios from "axios";
 
-const api = axios.create({
-    //baseURL: "http://10.0.2.2:5001/api",
-    baseURL:"http://13.53.197.4:5001/api",
-    Headers: {
-        "Content-Type": "application/json",
-    },
-    
-});
+import api from "./BaseUrl";
 
-class Api {
+class LoginApi {
 
     async login(user) {
         const {phone, password,usertoken} = user;
@@ -34,14 +26,9 @@ class Api {
 
         });
     }
-    async getUserPermissions(usertoken) {
-        
-        console.log(usertoken)
-        return await api.post("/permission/v1/permissionControl", {
-            usertoken
-        });
-    }
 
+   
 }
 
-export default new Api();
+
+export default new LoginApi();

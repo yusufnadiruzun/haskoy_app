@@ -1,4 +1,4 @@
-import api from "../../../api";
+import loginApi from "../../../Api/LoginApi";
 import {LoginStarted,LoginSuccess,StopLoading,SigninStarted,SigninSuccess,} from "../../redux/actionTypes.js";
 import { LoginTextControl } from "../../Methods/TextControl";
 import { SignTextControl } from "../../Methods/TextControl";
@@ -12,13 +12,13 @@ export const LoginControl = async (user) => {
   console.log("usertokenu",usertoken)
   if(usertoken != ""){
     console.log("if")
-    await api.login(user).then(result => store.dispatch(LoginSuccess(result.data.userToken))).catch(err => console.log(err));
+    await loginApi.login(user).then(result => store.dispatch(LoginSuccess(result.data.userToken))).catch(err => console.log(err));
   }
   else{
     console.log("else")
   if (await LoginTextControl(user)) {
     try {
-      const result = await api.login(user);
+      const result = await loginApi.login(user);
       await AsyncStorage.setItem('usertoken', result.data.userToken);
       store.dispatch(LoginSuccess(result.data.userToken));
     } catch (error) {
@@ -36,7 +36,7 @@ export const SignupControl = async (user) => {
   console.log("signup", user);
   if (await SignTextControl(user)) {
     store.dispatch(SigninStarted()); // Dispatch SigninStarted action
-    if (await api.signup(user)) {
+    if (await loginApi.signup(user)) {
       store.dispatch(SigninSuccess()); // Dispatch SigninSuccess action
     }
   }

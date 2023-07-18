@@ -7,7 +7,7 @@ const img = 'https://images.unsplash.com/photo-1493612276216-ee3925520721?ixlib=
 
 
 const StudentsList = () => {
-  /*
+  
   const [studentList, setStudentList] = useState([]);
   const navigation = useNavigation()
 
@@ -51,12 +51,6 @@ const StudentsList = () => {
       </SafeAreaView>
     </View>
   )
-    */
-   return (
-    <SafeAreaView>
-      <Text className="text-red-500">StudentsList</Text>
-      </SafeAreaView>
-   )
 }
 
 const style = StyleSheet.create({
