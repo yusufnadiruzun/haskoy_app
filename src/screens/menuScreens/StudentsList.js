@@ -23,8 +23,6 @@ const StudentsList = () => {
     });
   }
 
-
-
   return (
     <View style={style.container}>
       <SafeAreaView style={{ flex: 1, width: '100%', }}>

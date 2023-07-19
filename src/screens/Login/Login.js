@@ -13,6 +13,7 @@ import { Button } from "@rneui/themed";
 import { useSelector, useDispatch } from "react-redux";
 import { LoginControl } from "../../helpers/auth/auth";
 import User from "../../Objects/User";
+import * as Progress from "react-native-progress";
 
 function Login({ navigation }) {
   const selector = useSelector((state) => state.result);
@@ -79,7 +80,7 @@ function Login({ navigation }) {
           <View
             style={{ position: "absolute", zIndex: 1, top: "50%", left: "45%" }}
           >
-            <Button title="Solid" type="solid" loading />
+            <Progress.CircleSnail color={["red", "green", "blue"]} />
           </View>
         ) : null}
       </ScrollView>

@@ -7,6 +7,7 @@ let default_state = {
 };
 
 const reducer = (state = default_state, action) => {
+  
   switch (action.type) {
     case "SIGNINSTARTED":
       return { ...state, loading: true };
