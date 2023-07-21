@@ -80,7 +80,7 @@ function Login({ navigation }) {
           <View
             style={{ position: "absolute", zIndex: 1, top: "50%", left: "45%" }}
           >
-            <Progress.CircleSnail color={["red", "green", "blue"]} />
+            <Progress.CircleSnail  color={["red", "green", "blue"]} />
           </View>
         ) : null}
       </ScrollView>

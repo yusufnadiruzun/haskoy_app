@@ -1,11 +1,20 @@
 import React, { useEffect } from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 
-import Login from "./src/screens/Login/Login";
-import Menu from "./src/screens/Menu/Menu";
-import Signup from "./src/screens/Login/Signup";
+//packages
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { useSelector } from "react-redux";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+// menu
+import Menu from "./src/screens/Menu/Menu";
+
+// login
+import Login from "./src/screens/Login/Login";
+import Signup from "./src/screens/Login/Signup";
+
+// navigation
 import StudentsList from "./src/screens/menuScreens/StudentsList";
 import InspectionMenu from "./src/screens/menuScreens/Inspection/InspectionMenu";
 import Cleaner from "./src/screens/menuScreens/Cleaner";
@@ -14,10 +23,18 @@ import FoodList from "./src/screens/menuScreens/FoodList";
 import Wish from "./src/screens/menuScreens/Wish";
 import Temp from "./src/screens/menuScreens/Temp";
 import Competition from "./src/screens/menuScreens/Competition";
-import { useSelector } from "react-redux";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+
+// navigation inspection
+import NewBarcod from "./src/screens/menuScreens/Inspection/admin/NewBarcod";
+import BarcodView from "./src/screens/menuScreens/Inspection/admin/BarcodView";
+import BarcodScanner from "./src/screens/menuScreens/Inspection/user/BarcodScanner";
+
+// helpers
 import { LoginControl } from "./src/helpers/auth/auth";
 import User from "./src/Objects/User";
+
+
+
 const Stack = createNativeStackNavigator();
 
 function Navigator() {
@@ -64,6 +81,9 @@ function Navigator() {
           >
             <Stack.Screen name="Menu" component={Menu} />
             <Stack.Screen name="InspectionMenu" component={InspectionMenu} />
+            <Stack.Screen name="NewBarcod" component={NewBarcod} />
+            <Stack.Screen name="BarcodView" component={BarcodView} />
+            <Stack.Screen name="BarcodScanner" component={BarcodScanner} />
             <Stack.Screen name="Cleaner" component={Cleaner} />
             <Stack.Screen name="Guard" component={Guard} />
             <Stack.Screen name="FoodList" component={FoodList} />

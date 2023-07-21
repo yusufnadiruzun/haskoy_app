@@ -5,14 +5,14 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import MenuItem from "../../../components/MenuItem";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useState } from "react";
 import permissionApi from "../../../../Api/PermissionApi";
 import { useDispatch } from "react-redux";
 import { getUserPermissions } from "../../../redux/actionTypes";
 
+
 import * as Progress from "react-native-progress";
 
-const InspectionMenu = () => {
+const InspectionMenu = ({navigation}) => {
   const result = useSelector((state) => state.result);
   const dispatch = useDispatch();
 
@@ -30,12 +30,12 @@ const InspectionMenu = () => {
     <SafeAreaView className="container">
       {result.userPermissions.some((item) => item.permission_name === "yoklama") ? (
         <View className="flex-row flex-wrap justify-center items-center">
-          <MenuItem key={1} name={"Yoklama Al"}></MenuItem>
+          <MenuItem key={1} where={() => navigation.navigate("NewBarcod")} name={"Yoklama Al"}></MenuItem> 
           <MenuItem key={2} name={"Geçmiş Yoklamalar"}></MenuItem>
         </View>
       ) : (
         <View className="flex-row flex-wrap justify-center items-center">
-          <MenuItem key={3} name={"Yoklamaya Gir"}></MenuItem>
+          <MenuItem key={3} where={() => navigation.navigate("BarcodScanner")} name={"Yoklamaya Gir"}></MenuItem>
           <MenuItem key={4} name={"Geçmiş Yoklamalarım"}></MenuItem>
         </View>
       )}
