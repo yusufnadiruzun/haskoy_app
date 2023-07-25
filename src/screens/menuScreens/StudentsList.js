@@ -2,6 +2,7 @@ import { View, Text, StyleSheet, FlatList, SafeAreaView } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { Divider, Icon, Image } from '@rneui/themed'
 import { useNavigation } from '@react-navigation/native'
+import api from '../../../Api/Users'
 
 const img = 'https://images.unsplash.com/photo-1493612276216-ee3925520721?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80'
 
@@ -12,17 +13,9 @@ const StudentsList = () => {
   const navigation = useNavigation()
 
   useEffect(() => {
-    getStudents()
+    api.getUsers().then((res) => {setStudentList(res.data)}).catch((error) => {console.log(error)})
   }, []);
-
-  const getStudents = () => {
-    GetStudentList().then((updatedList) => {
-      setStudentList(updatedList);
-    }).catch((error) => {
-      console.log(error);
-    });
-  }
-
+  
   return (
     <View style={style.container}>
       <SafeAreaView style={{ flex: 1, width: '100%', }}>

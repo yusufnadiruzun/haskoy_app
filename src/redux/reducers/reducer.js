@@ -2,6 +2,7 @@ let default_state = {
   login: false,
   loading: false,
   usertoken: null,
+  phone: null,
   jwttoken: null,
   userPermissions :[]
 };

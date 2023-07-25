@@ -28,6 +28,7 @@ import Competition from "./src/screens/menuScreens/Competition";
 import NewBarcod from "./src/screens/menuScreens/Inspection/admin/NewBarcod";
 import BarcodView from "./src/screens/menuScreens/Inspection/admin/BarcodView";
 import BarcodScanner from "./src/screens/menuScreens/Inspection/user/BarcodScanner";
+import InspectionStudentList from "./src/screens/menuScreens/Inspection/admin/InspectionStudentList";
 
 // helpers
 import { LoginControl } from "./src/helpers/auth/auth";
@@ -52,14 +53,14 @@ function Navigator() {
      const user = new User();
      await AsyncStorage.setItem(
         "usertoken",
-        "$2a$10$8xcqi/c9rUfXlx.qW8bd/.F20y97Nikoa7XwVClvk7O7O.A9BWNym"
+        "$2a$10$VJv.bRVTXoivqN59CRTcMOQ6gBZdRJF3/RjUcBodrVXy8kwBf38j."
       );
        user.usertoken =  await AsyncStorage.getItem('usertoken')
        await AsyncStorage.getItem("usertoken").then((value) => {
         if (value == null) {
           AsyncStorage.setItem(
             "usertoken",
-            "$2a$10$8xcqi/c9rUfXlx.qW8bd/.F20y97Nikoa7XwVClvk7O7O.A9BWNym"
+            "$2a$10$VJv.bRVTXoivqN59CRTcMOQ6gBZdRJF3/RjUcBodrVXy8kwBf38j."
           );
           LoginControl(user)
         } else {
@@ -83,6 +84,7 @@ function Navigator() {
             <Stack.Screen name="InspectionMenu" component={InspectionMenu} />
             <Stack.Screen name="NewBarcod" component={NewBarcod} />
             <Stack.Screen name="BarcodView" component={BarcodView} />
+            <Stack.Screen name="InspectionStudentList" component={InspectionStudentList} />
             <Stack.Screen name="BarcodScanner" component={BarcodScanner} />
             <Stack.Screen name="Cleaner" component={Cleaner} />
             <Stack.Screen name="Guard" component={Guard} />

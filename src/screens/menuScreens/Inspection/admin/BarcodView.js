@@ -7,7 +7,11 @@ import Icon from "react-native-vector-icons/FontAwesome";
 
 const BarcodView = ({ navigation, route }) => {
   const {inspectionName} = route.params;
- 
+  
+  useEffect(() => {
+    console.log(inspectionName);
+  }, []);
+  
   return (
     <SafeAreaView className="">
       <View className="p-3">
@@ -16,14 +20,14 @@ const BarcodView = ({ navigation, route }) => {
             name="arrow-left"
             size={20}
             color="#16B497"
-            onPress={() => navigation.navigate("InspectionMenu")}
+            onPress={() => navigation.navigate("NewBarcod")}
           />
         </TouchableOpacity>
       </View>
       <View className="items-center justify-center mt-40">
         <Text className=" p-2 mb-5 text-2xl"> {inspectionName} Yoklaması</Text>
         <QRCode
-          value="https://github.com/yusufnadiruzun?tab=repositories"
+          value="http://"
           size={250}
         />
       </View>

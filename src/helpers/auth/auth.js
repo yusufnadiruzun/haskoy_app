@@ -9,13 +9,13 @@ export const LoginControl = async (user) => {
 
   store.dispatch(LoginStarted()); // Dispatch LoginStarted action
   const usertoken = user.usertoken;
-  console.log("usertokenu",usertoken)
+  
   if(usertoken != ""){
     console.log("if")
     await loginApi.login(user).then(result => store.dispatch(LoginSuccess(result.data.userToken))).catch(err => console.log(err));
   }
   else{
-    console.log("else")
+   
   if (await LoginTextControl(user)) {
     try {
       const result = await loginApi.login(user);
@@ -33,7 +33,7 @@ export const LoginControl = async (user) => {
 };
 
 export const SignupControl = async (user) => {
-  console.log("signup", user);
+  
   if (await SignTextControl(user)) {
     store.dispatch(SigninStarted()); // Dispatch SigninStarted action
     if (await loginApi.signup(user)) {
