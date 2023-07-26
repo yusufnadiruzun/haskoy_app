@@ -53,14 +53,14 @@ function Navigator() {
      const user = new User();
      await AsyncStorage.setItem(
         "usertoken",
-        "$2a$10$VJv.bRVTXoivqN59CRTcMOQ6gBZdRJF3/RjUcBodrVXy8kwBf38j."
+        "$2a$10$02nn4YIoWwkttNQ3iHju/OcWALAw64vcxBTq5fysVtmOyyzOIZKAW"
       );
        user.usertoken =  await AsyncStorage.getItem('usertoken')
        await AsyncStorage.getItem("usertoken").then((value) => {
         if (value == null) {
           AsyncStorage.setItem(
             "usertoken",
-            "$2a$10$VJv.bRVTXoivqN59CRTcMOQ6gBZdRJF3/RjUcBodrVXy8kwBf38j."
+            "$2a$10$02nn4YIoWwkttNQ3iHju/OcWALAw64vcxBTq5fysVtmOyyzOIZKAW"
           );
           LoginControl(user)
         } else {
