@@ -23,7 +23,7 @@ const StudentsList = () => {
           <Icon name='arrow-left' type='feather' size={30} onPress={() => navigation.goBack()} />
           <Text style={style.header}>Öğrenciler</Text>
         </View>
-        <Divider style={style.divider} />
+       
         <FlatList
           contentContainerStyle={style.contentContainerStyle}
           data={studentList}
@@ -32,7 +32,7 @@ const StudentsList = () => {
             <View style={{ flexDirection: 'row', paddingBottom: 15 }}>
               <Image source={{ uri: img }} style={style.photoStyle} resizeMode='cover' />
               <View style={{ justifyContent: 'center' }}>
-                <Text style={style.title}>{item['name']}</Text>
+                <Text style={style.title}>{item['name']} {item['surname']}</Text>
                 <Text style={{ color: 'gray' }}>{item['status']}</Text>
               </View>
             </View>
@@ -48,6 +48,7 @@ const style = StyleSheet.create({
   header: {
     fontSize: 30,
     fontWeight: 'bold',
+    
   },
   divider: {
     backgroundColor: 'teal',

@@ -3,6 +3,8 @@ let default_state = {
   loading: false,
   usertoken: null,
   phone: null,
+  name: null,
+  surname: null,
   jwttoken: null,
   userPermissions :[]
 };
@@ -20,7 +22,7 @@ const reducer = (state = default_state, action) => {
       return { ...state,loading: true };
       break;
     case "LOGINSUCCESS":
-      return { ...state, login: true, loading: false, usertoken: action.usertoken };
+      return { ...state, login: true, loading: false, usertoken: action.usertoken, phone: action.phone, name: action.name, surname: action.surname };
       break;
       case "STOPLOADING":
       return { ...state, loading: false };

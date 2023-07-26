@@ -47,7 +47,7 @@ function Navigator() {
     //   usertoken: "$2a$10$9to60RHWgYS5DO17twbS6.XLydpBCQFuiscB.DdvKjKRS2VFjv2p.",
     // }
     // LoginControl(user)
-  
+    console.log(new Date().getDate(),new Date().getMonth()+1,new Date().getFullYear())
     const getStorageData = async () => {
 
      const user = new User();

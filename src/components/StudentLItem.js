@@ -10,7 +10,7 @@ const StudentLItem = ({number,name,surname,status,onchange}) => {
     const handleCheck = (info) => {
       setCheck(true);
       setInfo(info);
-      onchange();
+      onchange(info);
     }
   return (
     <View className="flex-row border justify-center">
