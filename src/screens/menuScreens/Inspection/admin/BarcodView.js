@@ -3,13 +3,19 @@ import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
 import QRCode from "react-native-qrcode-svg";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Icon from "react-native-vector-icons/FontAwesome";
-
+import InspectionApi from "../../../../../Api/Inspection";
+import { useSelector } from "react-redux";
 
 const BarcodView = ({ navigation, route }) => {
-  const {inspectionName} = route.params;
+  const {inspectionName} = route.params ;
   
+  let [qrvalue, setQrvalue] = useState("");
+  const selector = useSelector((state) => state.result);
+
   useEffect(() => {
-    console.log(inspectionName);
+    InspectionApi.createInspection(inspectionName).then(res => console.log(res.data)).catch(err => console.log(err));
+    setQrvalue("http://16.171.153.153:5001/api/inspection/v1/addInspectionBarcod/" + inspectionName + "/" +(new Date().getDate() +""+ (new Date().getMonth()+1)  +""+new Date().getFullYear())) ;
+    console.log(qrvalue)
   }, []);
   
   return (
@@ -27,7 +33,7 @@ const BarcodView = ({ navigation, route }) => {
       <View className="items-center justify-center mt-40">
         <Text className=" p-2 mb-5 text-2xl"> {inspectionName} Yoklaması</Text>
         <QRCode
-          value="http://"
+          value={qrvalue ? qrvalue : "http://"}
           size={250}
         />
       </View>

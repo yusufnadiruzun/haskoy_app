@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, Button, StyleSheet,SafeAreaView } from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
-
+import InspectionApi from "../../../../../Api/Inspection";
+import { useSelector } from "react-redux";
 const BarcodScanner = () => {
-
+  const selector = useSelector((state) => state.result);
     const [hasPermission, setHasPermission] = useState(null);
     const [scanned, setScanned] = useState(false);
     const [text, setText] = useState("Not yet Scanned");
@@ -16,8 +17,10 @@ const BarcodScanner = () => {
 
     const handleBarCodeScanned = ({ type, data }) => {
       setScanned(true);
-      setText(data);
-      console.log(`type: ${type}, data: ${data}`);
+      setText("Tarama İşlemi Başarılı");
+      let url = data + "/" + selector.phone;
+      InspectionApi.addInspectionBarcod(url).then(res => console.log(res.data)).catch(err => console.log(err));
+      
     };
 
     useEffect(() => {
