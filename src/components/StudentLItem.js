@@ -13,7 +13,7 @@ const StudentLItem = ({number,name,surname,status,onchange}) => {
       onchange(info);
     }
   return (
-    <View className="flex-row border justify-center">
+    <View className="flex-row border justify-center ">
       <Text className="p-1 my-auto font-bold w-1/12" style={{fontFamily:"serif"}}>{number}</Text>
       <Text className="py-2 my-auto font-bold w-1/4" style={{fontFamily:"serif"}}>{name}</Text>
       <Text className="py-2 my-auto font-bold w-1/6" style={{fontFamily:"serif"}}>{surname}</Text>

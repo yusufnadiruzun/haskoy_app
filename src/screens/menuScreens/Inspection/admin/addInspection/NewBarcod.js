@@ -1,7 +1,7 @@
 import { View, Text,TouchableOpacity } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import SignBlocks from '../../../../components/SignBlocks'
+import SignBlocks from '../../../../../components/SignBlocks'
 import Icon from "react-native-vector-icons/FontAwesome";
 
 import { SelectList } from "react-native-dropdown-select-list";

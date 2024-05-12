@@ -24,11 +24,16 @@ import Wish from "./src/screens/menuScreens/Wish";
 import Temp from "./src/screens/menuScreens/Temp";
 import Competition from "./src/screens/menuScreens/Competition";
 
-// navigation inspection
-import NewBarcod from "./src/screens/menuScreens/Inspection/admin/NewBarcod";
-import BarcodView from "./src/screens/menuScreens/Inspection/admin/BarcodView";
+// navigation inspection admin
+import NewBarcod from "./src/screens/menuScreens/Inspection/admin/addInspection/NewBarcod";
+import BarcodView from "./src/screens/menuScreens/Inspection/admin/addInspection/BarcodView";
+import InspectionStudentList from "./src/screens/menuScreens/Inspection/admin/addInspection/InspectionStudentList";
+import InspectionList from "./src/screens/menuScreens/Inspection/admin/pastInspection/InspectionList";
+
+
+// navigation inspection user
 import BarcodScanner from "./src/screens/menuScreens/Inspection/user/BarcodScanner";
-import InspectionStudentList from "./src/screens/menuScreens/Inspection/admin/InspectionStudentList";
+
 
 // helpers
 import { LoginControl } from "./src/helpers/auth/auth";
@@ -85,6 +90,7 @@ function Navigator() {
             <Stack.Screen name="NewBarcod" component={NewBarcod} />
             <Stack.Screen name="BarcodView" component={BarcodView} />
             <Stack.Screen name="InspectionStudentList" component={InspectionStudentList} />
+            <Stack.Screen name="InspectionList" component={InspectionList} />
             <Stack.Screen name="BarcodScanner" component={BarcodScanner} />
             <Stack.Screen name="Cleaner" component={Cleaner} />
             <Stack.Screen name="Guard" component={Guard} />

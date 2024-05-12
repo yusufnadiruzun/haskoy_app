@@ -31,12 +31,12 @@ const InspectionMenu = ({navigation}) => {
       {result.userPermissions.some((item) => item.permission_name === "yoklama") ? (
         <View className="flex-row flex-wrap justify-center items-center">
           <MenuItem key={1} where={() => navigation.navigate("NewBarcod")} name={"Yoklama Al"}></MenuItem> 
-          <MenuItem key={2} name={"Geçmiş Yoklamalar"}></MenuItem>
+          <MenuItem key={2} where={() => navigation.navigate("InspectionList")} name={"Geçmiş Yoklamalar"}></MenuItem>
         </View>
       ) : (
         <View className="flex-row flex-wrap justify-center items-center">
           <MenuItem key={3} where={() => navigation.navigate("BarcodScanner")} name={"Yoklamaya Gir"}></MenuItem>
-          <MenuItem key={4} name={"Geçmiş Yoklamalarım"}></MenuItem>
+          <MenuItem key={4} where={() => navigation.navigate("InspectionList")}  name={"Geçmiş Yoklamalarım"}></MenuItem>
         </View>
       )}
   

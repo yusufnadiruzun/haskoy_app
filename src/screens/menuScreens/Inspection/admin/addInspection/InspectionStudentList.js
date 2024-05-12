@@ -1,14 +1,16 @@
 import { View, Text,TouchableOpacity, ScrollView } from 'react-native'
 import React, { useEffect } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import StudentLItem from '../../../../components/StudentLItem'
+import StudentLItem from '../../../../../components/StudentLItem'
 import Icon from "react-native-vector-icons/FontAwesome";
-import api from '../../../../../Api/Users'
-import inspectionApi from '../../../../../Api/Inspection'
+import api from '../../../../../../Api/Users'
+import inspectionApi from '../../../../../../Api/Inspection'
 
-const InspectionStudentList = ({navigation}) => {
+const InspectionStudentList = ({navigation,route}) => {
+
   const [students, setStudents] = React.useState([])
-
+  const {inspectionName} = route.params ;
+  
   const deneme = (value,phone) => {
     if(value == "check"){
       value = "var"
@@ -17,7 +19,7 @@ const InspectionStudentList = ({navigation}) => {
     }else{
       value = "izinli"
     }
-    inspectionApi.addInspection("hatim",phone,value).then(res => console.log(res.data)).catch(err => console.log(err));
+    inspectionApi.addInspection(inspectionName,phone,value).then(res => console.log(res.data)).catch(err => console.log(err));
   }
   useEffect(() => {
    api.getUsers().then(res => setStudents(res.data)).catch(err => console.log(err));

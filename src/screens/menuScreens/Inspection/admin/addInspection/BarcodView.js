@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
 import QRCode from "react-native-qrcode-svg";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Icon from "react-native-vector-icons/FontAwesome";
-import InspectionApi from "../../../../../Api/Inspection";
+import InspectionApi from "../../../../../../Api/Inspection";
 import { useSelector } from "react-redux";
 
 const BarcodView = ({ navigation, route }) => {

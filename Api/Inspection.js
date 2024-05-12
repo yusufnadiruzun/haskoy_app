@@ -21,6 +21,11 @@ class InspectionApi {
             date:date
         });
     }
+    async getAllInspection(){
+
+        return await api.get("/inspection/v1/getAllInspection");
+    }
+    
     async addInspectionBarcod(url){
         return await api.get(url);
         };
