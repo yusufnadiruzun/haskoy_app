@@ -1,21 +1,26 @@
-import { View, Text,TouchableOpacity,ScrollView,StyleSheet } from 'react-native'
-import React, { useEffect, useState } from 'react'
-import InspectionLItem from '../../../../../components/InspectionLItem'
-import { SafeAreaView } from 'react-native-safe-area-context'
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  ScrollView,
+  StyleSheet,
+} from "react-native";
+import React, { useEffect, useState } from "react";
+import InspectionLItem from "../../../../../components/InspectionLItem";
+import { SafeAreaView } from "react-native-safe-area-context";
 import Icon from "react-native-vector-icons/FontAwesome";
-import InspectionApi from '../../../../../../Api/Inspection';
-
-
+import InspectionApi from "../../../../../../Api/Inspection";
+import {formatDate} from "../../../../../Methods/FormatDate"
 const InspectionList = ({ navigation }) => {
   const [pastInspection, setPastInspection] = useState([]); // Başlangıç değeri null
 
   useEffect(() => {
     InspectionApi.getAllInspection()
-      .then(res => {
+      .then((res) => {
         console.log(res.data);
         setPastInspection(res.data);
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   }, []);
 
   // if (!pastInspection || !pastInspection.result) {
@@ -36,18 +41,25 @@ const InspectionList = ({ navigation }) => {
             size={20}
             style={{ marginLeft: 10, marginTop: 10 }}
             color="#16B497"
-            onPress={() => navigation.navigate("NewBarcod")}
+            onPress={() => navigation.navigate("InspectionMenu")}
           />
         </TouchableOpacity>
-        <Text className="mx-auto text-2xl p-4 text-haskoyGreen font-bold" style={{ fontFamily: "serif" }}>
+        <Text
+          className="mx-auto text-2xl p-4 text-haskoyGreen font-bold"
+          style={{ fontFamily: "serif" }}
+        >
           Geçmiş Yoklama Listesi
         </Text>
         <ScrollView style={styles.container}>
           {pastInspection.map((item, index) => (
-            <View key={index} style={styles.item}>
-              <Text>Tarih: {item.date}</Text>
-              <Text>Yoklama Türü: {item.inspection_type}</Text>
-              <Text>Katılımcı Sayısı: {item.participant_count}</Text>
+            <View key={index}>
+              <InspectionLItem
+                count={index}
+                date={formatDate(item.date)}
+                inspection={item.inspection_type}
+                dateInspectionScreen={() => navigation.navigate("DateInspectionScreen",{date:item.date,inspection_type:item.inspection_type})}
+
+              ></InspectionLItem>
             </View>
           ))}
         </ScrollView>
@@ -58,12 +70,8 @@ const InspectionList = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
-    display:"flex",
+    display: "flex",
     padding: 2,
-  },
-  item: {
-   
-    elevation: 2,
   },
 });
 

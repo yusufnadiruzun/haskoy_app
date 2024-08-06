@@ -29,7 +29,7 @@ import NewBarcod from "./src/screens/menuScreens/Inspection/admin/addInspection/
 import BarcodView from "./src/screens/menuScreens/Inspection/admin/addInspection/BarcodView";
 import InspectionStudentList from "./src/screens/menuScreens/Inspection/admin/addInspection/InspectionStudentList";
 import InspectionList from "./src/screens/menuScreens/Inspection/admin/pastInspection/InspectionList";
-
+import DateInspectionScreen from "./src/screens/menuScreens/Inspection/admin/pastInspection/DateInspectionScreen";
 
 // navigation inspection user
 import BarcodScanner from "./src/screens/menuScreens/Inspection/user/BarcodScanner";
@@ -93,6 +93,7 @@ function Navigator() {
             <Stack.Screen name="InspectionStudentList" component={InspectionStudentList} />
             <Stack.Screen name="InspectionList" component={InspectionList} />
             <Stack.Screen name="BarcodScanner" component={BarcodScanner} />
+            <Stack.Screen name="DateInspectionScreen" component={DateInspectionScreen} />
             <Stack.Screen name="Cleaner" component={Cleaner} />
             <Stack.Screen name="Guard" component={Guard} />
             <Stack.Screen name="FoodList" component={FoodList} />

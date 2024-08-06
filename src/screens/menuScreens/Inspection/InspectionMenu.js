@@ -8,8 +8,6 @@ import { useSelector } from "react-redux";
 import permissionApi from "../../../../Api/PermissionApi";
 import { useDispatch } from "react-redux";
 import { getUserPermissions } from "../../../redux/actionTypes";
-
-
 import * as Progress from "react-native-progress";
 
 const InspectionMenu = ({navigation}) => {
@@ -20,7 +18,6 @@ const InspectionMenu = ({navigation}) => {
   useEffect(() => {
     const getPermission = async () => {
       const { data } = await permissionApi.getUserPermissions(result.usertoken);
-      console.log(data)
       dispatch(getUserPermissions(data)); // Verileri Redux mağazasına doğrudan ekleyin
     };
   

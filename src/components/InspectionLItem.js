@@ -2,10 +2,10 @@ import { View, Text } from 'react-native'
 import React from 'react'
 import { TouchableOpacity } from 'react-native'
 
-const InspectionLItem = ({date, inspection, count}) => {
+const InspectionLItem = ({date, inspection, count, dateInspectionScreen}) => {
   return (
     <View>
-        <TouchableOpacity className ="flex-row border">
+        <TouchableOpacity className ="flex-row p-2" onPress={() => dateInspectionScreen()}>
         <Text className="py-3 px-1 my-auto font-bold w-1/12" style={{fontFamily:"serif"}}>1</Text>
         <Text className="py-2 my-auto font-bold w-1/4" style={{fontFamily:"serif"}}>{date} </Text>
         <Text className="py-2 my-auto font-bold w-1/3" style={{fontFamily:"serif"}}>Yoklama: {inspection}</Text>

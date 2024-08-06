@@ -5,6 +5,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import Icon from "react-native-vector-icons/FontAwesome";
 import InspectionApi from "../../../../../../Api/Inspection";
 import { useSelector } from "react-redux";
+import { formatDate } from "../../../../../Methods/FormatDate";
 
 const BarcodView = ({ navigation, route }) => {
   const {inspectionName} = route.params ;
@@ -14,7 +15,7 @@ const BarcodView = ({ navigation, route }) => {
 
   useEffect(() => {
     InspectionApi.createInspection(inspectionName).then(res => console.log(res.data)).catch(err => console.log(err));
-    setQrvalue("http://51.20.253.38:5001/api/inspection/v1/addInspectionBarcod/" + inspectionName + "/" +(new Date().getDate() +""+ (new Date().getMonth()+1)  +""+new Date().getFullYear())) ;
+    setQrvalue("http://51.20.253.38:5001/api/inspection/v1/addInspectionBarcod/" + inspectionName + "/" +(formatDate())) ;
     console.log(qrvalue)
   }, []);
   
