@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 const FoodList = () => {
   return (
     <View style={style.container}>
-    <Text style={style.Text}>Bu Hizmet Çok Yakında Sizlerle Olacak </Text>
+    <Text style={style.Text}>Bu Hizmet Çok Yakında Sizlerle Olacak deneme </Text>
     <Icon style={style.icon} name='smile-wink'></Icon>
   </View>
   )

@@ -14,7 +14,7 @@ const BarcodView = ({ navigation, route }) => {
 
   useEffect(() => {
     InspectionApi.createInspection(inspectionName).then(res => console.log(res.data)).catch(err => console.log(err));
-    setQrvalue("http://16.171.153.153:5001/api/inspection/v1/addInspectionBarcod/" + inspectionName + "/" +(new Date().getDate() +""+ (new Date().getMonth()+1)  +""+new Date().getFullYear())) ;
+    setQrvalue("http://51.20.253.38:5001/api/inspection/v1/addInspectionBarcod/" + inspectionName + "/" +(new Date().getDate() +""+ (new Date().getMonth()+1)  +""+new Date().getFullYear())) ;
     console.log(qrvalue)
   }, []);
   

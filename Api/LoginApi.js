@@ -23,10 +23,9 @@ class LoginApi {
             mail,
             status,
             photourl
-
         });
     }
-   
+   d
 }
 
 

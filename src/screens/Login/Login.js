@@ -32,7 +32,7 @@ function Login({ navigation }) {
   return (
     <SafeAreaView>
       <ScrollView>
-        <View className="items-center mt-4">
+        <View className="items-center mt-10">
           <Image
             source={require("../../assets/haskoy.png")}
             className="w-1/2 h-28 "

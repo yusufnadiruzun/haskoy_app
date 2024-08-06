@@ -53,7 +53,7 @@ function Navigator() {
     // }
     // LoginControl(user)
     console.log(new Date().getDate(),new Date().getMonth()+1,new Date().getFullYear())
-    const getStorageData = async () => {
+   /* const getStorageData = async () => {
 
      const user = new User();
      await AsyncStorage.setItem(
@@ -74,6 +74,7 @@ function Navigator() {
       });
     };
     getStorageData();
+    */
   }, []);
 
   return (

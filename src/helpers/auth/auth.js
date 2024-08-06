@@ -34,6 +34,9 @@ export const LoginControl = async (user) => {
         const token = await AsyncStorage.getItem("usertoken");
         console.log("AsyncStorage'den okunan usertoken: ", token);
       }
+    }else{
+      console.log("else ici ")
+      store.dispatch(StopLoading());
     }
   }
 };

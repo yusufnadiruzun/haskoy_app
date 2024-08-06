@@ -1,8 +1,8 @@
 let default_state = {
-  login: false,
+  login: true,
   loading: false,
-  usertoken: null,
-  phone: null,
+  usertoken: "$2a$10$5p/P/Dx0L1hQqwuzbOhOOew7pxi8oKfOThAJ.3I4al78adKCWHchG",//null,
+  phone: 5531503592,//null,
   name: null,
   surname: null,
   jwttoken: null,

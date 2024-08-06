@@ -20,6 +20,7 @@ const InspectionMenu = ({navigation}) => {
   useEffect(() => {
     const getPermission = async () => {
       const { data } = await permissionApi.getUserPermissions(result.usertoken);
+      console.log(data)
       dispatch(getUserPermissions(data)); // Verileri Redux mağazasına doğrudan ekleyin
     };
   
