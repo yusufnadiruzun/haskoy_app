@@ -24,9 +24,9 @@ class InspectionApi {
     return await api.get("/inspection/v1/getAllInspection");
   }
   
-  async getInspection(date, inspection_type) {
-    return await api.post("/inspection/v1/getInspection", {
-      inspection_type: inspection_type,
+  async getInspection(inspection_name,date) {
+    return await api.post("inspection//v1/getInspection", {
+      inspection_name: inspection_name,
       date: date,
     });
   }

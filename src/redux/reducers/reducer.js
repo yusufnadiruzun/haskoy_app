@@ -1,7 +1,7 @@
 let default_state = {
   login: true,
   loading: false,
-  usertoken: "$2a$10$5p/P/Dx0L1hQqwuzbOhOOew7pxi8oKfOThAJ.3I4al78adKCWHchG",//null,
+  usertoken: "$2a$10$gNWMdSmMHCb/4tWXSyMUoO7NpN2YXRv2PdBNpHSH5uFxl8u.kcOIO",//null,
   phone: 5531503592,//null,
   name: null,
   surname: null,
