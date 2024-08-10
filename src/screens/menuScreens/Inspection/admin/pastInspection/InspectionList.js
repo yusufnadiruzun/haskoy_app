@@ -52,14 +52,16 @@ const InspectionList = ({ navigation }) => {
       <ScrollView style={styles.container}>
         <View style={styles.listItem}>
           {Array.isArray(pastInspection) && pastInspection.length > 0 ? (
+            <View className="flex-row justify-around p-3 ml-3">
+              <Text style={styles.title}>No</Text>
+              <Text style={styles.title}>Tarih</Text>
+              <Text style={styles.title}>Yoklama</Text>
+              <Text style={styles.title}> Katılımcı Sayısı</Text>
+            </View>
+          ) : null}
+          {Array.isArray(pastInspection) && pastInspection.length > 0 ? (
             pastInspection.map((item, index) => (
               <View key={index}>
-                <View className="flex-row justify-around p-3 ml-3">
-                  <Text style={styles.title}>No</Text>
-                  <Text style={styles.title}>Tarih</Text>
-                  <Text style={styles.title}>Yoklama</Text>
-                  <Text style={styles.title}> Katılımcı Sayısı</Text>
-                </View>
                 <InspectionLItem
                   index={index + 1}
                   count={item.participant_count}

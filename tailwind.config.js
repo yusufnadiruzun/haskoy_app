@@ -20,6 +20,7 @@ module.exports = {
       'bermuda': '#78dcca',
       'haskoyGreen': '#16B497',
       'haskoyOrange': '#F1701C',
+     
     },
     extend: {},
   },

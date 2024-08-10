@@ -23,9 +23,9 @@ class InspectionApi {
   async getAllInspection() {
     return await api.get("/inspection/v1/getAllInspection");
   }
-  
-  async getInspection(inspection_name,date) {
-    return await api.post("inspection//v1/getInspection", {
+
+  async getInspection(inspection_name, date) {
+    return await api.post("/inspection/v1/getInspection", {
       inspection_name: inspection_name,
       date: date,
     });
@@ -33,6 +33,14 @@ class InspectionApi {
 
   async addInspectionBarcod(url) {
     return await api.get(url);
+  }
+  async updateInspection(newStatus, inspection_name, phone, date) {
+    return await api.post("/inspection/v1/updateInspection", {
+      inspection_name: inspection_name,
+      student_phone: phone,
+      date: date,
+      status: newStatus,
+    });
   }
 }
 
