@@ -9,3 +9,9 @@
  apk almak icin ./gradlew assemblyDebug android icinde
  isim değiştirdikten sonra ./gradlew clean
  emulator -avd Pixel_6a_API_30
+
+
+
+ emulator -list-avds
+
+ emulator -avd [AVD_NAME]

@@ -4,7 +4,7 @@ const LOGINSTARTED = "LOGINSTARTED";
 const LOGINSUCCESS = "LOGINSUCCESS";
 const STOPLOADING = "STOPLOADING";
 const GETUSERPERMISSIONS = "GETUSERPERMISSIONS";
-
+const GETSTUDENTPASTINSPECTION = "GETSTUDENTPASTINSPECTION"
 export function SigninStarted() {
   return {
     type: SIGNINSTARTED,
@@ -43,5 +43,12 @@ export function getUserPermissions(permissions) {
   return {
     type: GETUSERPERMISSIONS,
     permissions: permissions,
+  };
+}
+
+export function getStudentPastInspection(inspection) {
+  return {
+    type: GETSTUDENTPASTINSPECTION,
+    inspection: inspection,
   };
 }

@@ -33,7 +33,7 @@ import DateInspectionScreen from "./src/screens/menuScreens/Inspection/admin/pas
 
 // navigation inspection user
 import BarcodScanner from "./src/screens/menuScreens/Inspection/user/BarcodScanner";
-
+import PastInspection from "./src/screens/menuScreens/Inspection/user/PastInspection"
 
 // helpers
 import { LoginControl } from "./src/helpers/auth/auth";
@@ -93,6 +93,7 @@ function Navigator() {
             <Stack.Screen name="InspectionStudentList" component={InspectionStudentList} />
             <Stack.Screen name="InspectionList" component={InspectionList} />
             <Stack.Screen name="BarcodScanner" component={BarcodScanner} />
+            <Stack.Screen name="PastInspection" component={PastInspection} />
             <Stack.Screen name="DateInspectionScreen" component={DateInspectionScreen} />
             <Stack.Screen name="Cleaner" component={Cleaner} />
             <Stack.Screen name="Guard" component={Guard} />

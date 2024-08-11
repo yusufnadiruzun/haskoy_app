@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   Modal,
   StyleSheet,
-  Alert
+  Alert,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import StudentLItem from "../../../../../components/StudentLItem";
@@ -29,10 +29,10 @@ const DateInspectionScreen = ({ navigation, route }) => {
       .catch((err) => console.log(err));
   }, []);
 
-  const showPopUpScreenToUpdate = (student,index) => {
+  const showPopUpScreenToUpdate = (student, index) => {
     setSelectedStudent(student);
     setModalVisible(true);
-    setSelectedStudentIndex(index)
+    setSelectedStudentIndex(index);
   };
   const setStudentStatus = (newStatus, phone) => {
     api
@@ -40,11 +40,10 @@ const DateInspectionScreen = ({ navigation, route }) => {
       .then((res) => {
         // Öğrenci durumunu güncelle
         const updatedStudents = [...students];
-      
+
         if (updatedStudents[selectedStudentIndex]) {
           updatedStudents[selectedStudentIndex].status = newStatus;
           setStudents(updatedStudents);
-          
         }
 
         // Pop-up kapat
@@ -82,7 +81,7 @@ const DateInspectionScreen = ({ navigation, route }) => {
               surname={student.surname}
               level={student.level}
               status={student.status}
-              updateButton={() => showPopUpScreenToUpdate(student,index)}
+              updateButton={() => showPopUpScreenToUpdate(student, index)}
             />
           </View>
         ))}

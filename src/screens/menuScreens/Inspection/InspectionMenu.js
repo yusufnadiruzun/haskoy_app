@@ -1,48 +1,116 @@
 import { View, Text, StyleSheet } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import { SafeAreaView } from "react-native-safe-area-context";
 import MenuItem from "../../../components/MenuItem";
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import permissionApi from "../../../../Api/PermissionApi";
+import inspectionApi from "../../../../Api/Inspection";
 import { useDispatch } from "react-redux";
-import { getUserPermissions } from "../../../redux/actionTypes";
+import {
+  getUserPermissions,
+  getStudentPastInspection,
+} from "../../../redux/actionTypes";
 import * as Progress from "react-native-progress";
+import PastInspection from "./user/PastInspection";
+import { useSelector } from "react-redux";
+import analyze from "../../../Methods/AnalyzeInspection";
 
-const InspectionMenu = ({navigation}) => {
+const InspectionMenu = ({ navigation }) => {
   const result = useSelector((state) => state.result);
   const dispatch = useDispatch();
-
-
+  const [analyzeResult,setanalyzeResult] = useState([])
   useEffect(() => {
     const getPermission = async () => {
       const { data } = await permissionApi.getUserPermissions(result.usertoken);
       dispatch(getUserPermissions(data)); // Verileri Redux mağazasına doğrudan ekleyin
     };
-  
+    const callPastInspection = async () => {
+      if (
+        !result.userPermissions.some(
+          (item) => item.permission_name === "yoklama"
+        )
+      ) {
+        const pastInspectionsData = await inspectionApi.getStudentInspection(
+          result.phone
+        );
+        dispatch(getStudentPastInspection(pastInspectionsData.data)); // Geçmiş yoklamaları state'e kaydet
+        setanalyzeResult(analyze(pastInspectionsData.data))
+      }
+    };
     getPermission();
+    callPastInspection();
   }, []);
-  
+  console.log(analyzeResult)
   return (
     <SafeAreaView className="container">
-      {result.userPermissions.some((item) => item.permission_name === "yoklama") ? (
+      <Text
+        className="mx-auto text-3xl mt-8 p-4 text-haskoyGreen font-bold"
+        style={{ fontFamily: "serif" }}
+      >
+         Yoklama 
+      </Text>
+      {result.userPermissions.some(
+        (item) => item.permission_name === "yoklama"
+      ) ? (
         <View className="flex-row flex-wrap justify-center items-center">
-          <MenuItem key={1} where={() => navigation.navigate("NewBarcod")} name={"Yoklama Al"}></MenuItem> 
-          <MenuItem key={2} where={() => navigation.navigate("InspectionList")} name={"Geçmiş Yoklamalar"}></MenuItem>
+          <MenuItem
+            key={1}
+            where={() => navigation.navigate("NewBarcod")}
+            name={"Yoklama Al"}
+          ></MenuItem>
+          <MenuItem
+            key={2}
+            where={() => navigation.navigate("InspectionList")}
+            name={"Geçmiş Yoklamalar"}
+          ></MenuItem>
         </View>
       ) : (
-        <View className="flex-row flex-wrap justify-center items-center">
-          <MenuItem key={3} where={() => navigation.navigate("BarcodScanner")} name={"Yoklamaya Gir"}></MenuItem>
-          <MenuItem key={4} where={() => navigation.navigate("InspectionList")}  name={"Geçmiş Yoklamalarım"}></MenuItem>
+        <View className="flex-row flex-wrap justify-center items-center mt-8">
+          <MenuItem
+            key={3}
+            where={() => navigation.navigate("BarcodScanner")}
+            name={"Yoklamaya Gir"}
+          ></MenuItem>
+          <MenuItem
+            key={4}
+            where={() =>
+              navigation.navigate("PastInspection")
+            }
+            name={"Geçmiş Yoklamalarım"}
+          ></MenuItem>
+          {/* <View className="flex items-center mt-60">
+            <Progress.Pie
+              color="orange"
+
+              className="mt-3"
+              progress={parseFloat("0."+analyzeResult[3])}
+              size={200}
+            />
+            <Text className="font-bold text-2xl text-haskoyGreen mt-4">Programlara Katılım Oranı "%{100*parseFloat("0."+analyzeResult[3])}"</Text>
+          </View> */}
+          <View className="items-center mt-72">
+      <AnimatedCircularProgress
+        size={200}
+        width={15}
+        fill={ parseFloat("0."+analyzeResult[3]) * 100}
+        tintColor="orange"
+        backgroundColor="#3d5875"
+        duration={1500}
+        rotation={0}
+        
+        lineCap="square"
+      />
+      <Text className="font-bold text-midnight mt-5 text-2xl">
+        Programlara Katılım Oranı %{ parseFloat("0."+analyzeResult[3]) * 100}
+      </Text>
+    </View>
+        
         </View>
       )}
-  
-      <View className="items-center mt-60">
-        <Progress.Pie color="blue" className="mt-3" progress={0.2} size={200} />
-      </View>
     </SafeAreaView>
   );
-      };
-  
+};
+
 export default InspectionMenu;

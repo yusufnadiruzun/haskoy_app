@@ -52,8 +52,7 @@ const InspectionList = ({ navigation }) => {
       <ScrollView style={styles.container}>
         <View style={styles.listItem}>
           {Array.isArray(pastInspection) && pastInspection.length > 0 ? (
-            <View className="flex-row justify-around p-3 ml-3">
-              <Text style={styles.title}>No</Text>
+            <View className="flex-row justify-around p-3 ">
               <Text style={styles.title}>Tarih</Text>
               <Text style={styles.title}>Yoklama</Text>
               <Text style={styles.title}> Katılımcı Sayısı</Text>
@@ -63,7 +62,7 @@ const InspectionList = ({ navigation }) => {
             pastInspection.map((item, index) => (
               <View key={index}>
                 <InspectionLItem
-                  index={index + 1}
+                  
                   count={item.participant_count}
                   date={item.date}
                   inspection={item.inspection_name}
@@ -88,7 +87,7 @@ const InspectionList = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     display: "flex",
-    padding: 2,
+    padding: 1,
   },
   warningText: {},
   title: {
@@ -97,7 +96,7 @@ const styles = StyleSheet.create({
   },
   listItem: {
     flex: 1,
-    marginRight: "17%",
+   
   },
 });
 

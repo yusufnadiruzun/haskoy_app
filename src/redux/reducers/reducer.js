@@ -6,7 +6,8 @@ let default_state = {
   name: null,
   surname: null,
   jwttoken: null,
-  userPermissions :[]
+  userPermissions :[],
+  studentPastInspection:[]
 };
 
 const reducer = (state = default_state, action) => {
@@ -30,6 +31,10 @@ const reducer = (state = default_state, action) => {
     case "GETUSERPERMISSIONS":
       return { ...state, userPermissions: action.permissions };
       break;
+    case "GETSTUDENTPASTINSPECTION":
+      return { ...state, studentPastInspection: action.inspection };
+      break;
+  
   }
   return state;
 };

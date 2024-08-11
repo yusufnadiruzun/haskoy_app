@@ -42,6 +42,11 @@ class InspectionApi {
       status: newStatus,
     });
   }
+  async getStudentInspection(student_phone) {
+    return await api.post("/inspection/v1/getStudentInspection", {
+      student_phone: student_phone
+    });
+  }
 }
 
 export default new InspectionApi();
