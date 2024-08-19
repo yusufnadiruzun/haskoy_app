@@ -4,27 +4,35 @@ import Icon from "react-native-vector-icons/FontAwesome5";
 import { SafeAreaView } from "react-native-safe-area-context";
 import MenuItem from "../../../components/MenuItem";
 import { useEffect } from "react";
-import { AnimatedCircularProgress } from 'react-native-circular-progress';
+import { AnimatedCircularProgress } from "react-native-circular-progress";
 import permissionApi from "../../../../Api/PermissionApi";
 import inspectionApi from "../../../../Api/Inspection";
 import { useDispatch } from "react-redux";
 import {
   getUserPermissions,
   getStudentPastInspection,
+  StopLoading,
 } from "../../../redux/actionTypes";
 import * as Progress from "react-native-progress";
 import PastInspection from "./user/PastInspection";
 import { useSelector } from "react-redux";
 import analyze from "../../../Methods/AnalyzeInspection";
-
+import { LoginStarted } from "../../../redux/actionTypes";
+import store from "../../../redux/index"; // Import your Redux store
 const InspectionMenu = ({ navigation }) => {
+
   const result = useSelector((state) => state.result);
   const dispatch = useDispatch();
-  const [analyzeResult,setanalyzeResult] = useState([])
+  const [analyzeResult, setanalyzeResult] = useState([]);
+  
+
   useEffect(() => {
+
+    dispatch(LoginStarted());
     const getPermission = async () => {
       const { data } = await permissionApi.getUserPermissions(result.usertoken);
       dispatch(getUserPermissions(data)); // Verileri Redux mağazasına doğrudan ekleyin
+      dispatch(StopLoading())
     };
     const callPastInspection = async () => {
       if (
@@ -36,20 +44,23 @@ const InspectionMenu = ({ navigation }) => {
           result.phone
         );
         dispatch(getStudentPastInspection(pastInspectionsData.data)); // Geçmiş yoklamaları state'e kaydet
-        setanalyzeResult(analyze(pastInspectionsData.data))
+        setanalyzeResult(analyze(pastInspectionsData.data));
+        dispatch(StopLoading())
+        
       }
+     
     };
     getPermission();
     callPastInspection();
   }, []);
-  console.log(analyzeResult)
+  console.log(analyzeResult);
   return (
     <SafeAreaView className="container">
       <Text
         className="mx-auto text-3xl mt-8 p-4 text-haskoyGreen font-bold"
         style={{ fontFamily: "serif" }}
       >
-         Yoklama 
+        Yoklama
       </Text>
       {result.userPermissions.some(
         (item) => item.permission_name === "yoklama"
@@ -65,6 +76,11 @@ const InspectionMenu = ({ navigation }) => {
             where={() => navigation.navigate("InspectionList")}
             name={"Geçmiş Yoklamalar"}
           ></MenuItem>
+          <MenuItem
+            key={3}
+            where={() => navigation.navigate("StudentAnalyze")}
+            name={"Talebe Analiz"}
+          ></MenuItem>
         </View>
       ) : (
         <View className="flex-row flex-wrap justify-center items-center mt-8">
@@ -75,9 +91,7 @@ const InspectionMenu = ({ navigation }) => {
           ></MenuItem>
           <MenuItem
             key={4}
-            where={() =>
-              navigation.navigate("PastInspection")
-            }
+            where={() => navigation.navigate("PastInspection")}
             name={"Geçmiş Yoklamalarım"}
           ></MenuItem>
           {/* <View className="flex items-center mt-60">
@@ -91,22 +105,21 @@ const InspectionMenu = ({ navigation }) => {
             <Text className="font-bold text-2xl text-haskoyGreen mt-4">Programlara Katılım Oranı "%{100*parseFloat("0."+analyzeResult[3])}"</Text>
           </View> */}
           <View className="items-center mt-72">
-      <AnimatedCircularProgress
-        size={200}
-        width={15}
-        fill={ parseFloat("0."+analyzeResult[3]) * 100}
-        tintColor="orange"
-        backgroundColor="#3d5875"
-        duration={1500}
-        rotation={0}
-        
-        lineCap="square"
-      />
-      <Text className="font-bold text-midnight mt-5 text-2xl">
-        Programlara Katılım Oranı %{ parseFloat("0."+analyzeResult[3]) * 100}
-      </Text>
-    </View>
-        
+            <AnimatedCircularProgress
+              size={200}
+              width={15}
+              fill={parseFloat("0." + analyzeResult[3]) * 100}
+              tintColor="orange"
+              backgroundColor="#3d5875"
+              duration={1500}
+              rotation={0}
+              lineCap="square"
+            />
+            <Text className="font-bold text-midnight mt-5 text-2xl">
+              Programlara Katılım Oranı %
+              {parseFloat("0." + analyzeResult[3]) * 100}
+            </Text>
+          </View>
         </View>
       )}
     </SafeAreaView>

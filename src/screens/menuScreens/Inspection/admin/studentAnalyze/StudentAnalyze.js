@@ -1,0 +1,130 @@
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  SafeAreaView,
+  TouchableOpacity,
+} from "react-native";
+import React, { useState, useEffect } from "react";
+import { Divider, Icon, Image } from "@rneui/themed";
+import api from "../../../../../../Api/Users";
+
+const StudentAnalyze = ({ navigation }) => {
+  const [studentList, setStudentList] = useState([]);
+  const img =
+    "https://images.unsplash.com/photo-1493612276216-ee3925520721?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80";
+
+  useEffect(() => {
+    api
+      .getUsers()
+      .then((res) => {
+        setStudentList(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  const handleStudentPress = (student) => {
+    console.log("Tıklanan öğrenci:", student.name, student.surname);
+    navigation.navigate("StudentAnalyzeScreen", {
+      studentPhone: student.phone,
+      name: student.name,
+      surname:student.surname,
+      level:student.level
+    });
+    // Burada tıklanan öğrenci ile ilgili yapılacak işlemleri tanımlayabilirsiniz.
+    // Örneğin, öğrencinin detaylarını başka bir sayfada göstermek için navigate edebilirsiniz.
+    // navigation.navigate('StudentDetail', { student });
+  };
+
+  return (
+    <View style={style.container}>
+      <SafeAreaView style={{ flex: 1, width: "100%" }}>
+        <View
+          style={{
+            paddingLeft: 10,
+            paddingTop: 40,
+            paddingBottom: 10,
+            flexDirection: "row",
+            alignItems: "center",
+          }}
+        >
+          <Icon
+            name="arrow-left"
+            type="feather"
+            size={30}
+            onPress={() => navigation.goBack()}
+          />
+          <Text style={style.header}>Öğrenciler</Text>
+        </View>
+
+        <FlatList
+          contentContainerStyle={style.contentContainerStyle}
+          data={studentList}
+          showsVerticalScrollIndicator={false}
+          renderItem={({ item }) => (
+            <TouchableOpacity onPress={() => handleStudentPress(item)}>
+              <View style={{ flexDirection: "row", paddingBottom: 15 }}>
+                <Image
+                  source={{ uri: img }}
+                  style={style.photoStyle}
+                  resizeMode="cover"
+                />
+                <View style={{ justifyContent: "center" }}>
+                  <Text style={style.title}>
+                    {item["name"]} {item["surname"]}
+                  </Text>
+                  <Text style={{ color: "gray" }}>{item["status"]}</Text>
+                </View>
+              </View>
+            </TouchableOpacity>
+          )}
+          keyExtractor={(item) => item["phone"]}
+        />
+      </SafeAreaView>
+    </View>
+  );
+};
+
+const style = StyleSheet.create({
+  header: {
+    fontSize: 30,
+    fontWeight: "bold",
+  },
+  divider: {
+    backgroundColor: "teal",
+    height: 2,
+    marginLeft: 10,
+    marginRight: 100,
+  },
+  photoStyle: {
+    height: 70,
+    width: 70,
+    borderRadius: 40,
+    marginRight: 10,
+  },
+  container: {
+    width: "100%",
+    height: "100%",
+    alignItems: "flex-start",
+    alignContent: "flex-start",
+    justifyContent: "flex-start",
+  },
+  contentContainerStyle: {
+    alignItems: "flex-start",
+    alignContent: "flex-start",
+    paddingVertical: 30,
+    paddingHorizontal: 12,
+  },
+  icon: {
+    fontSize: 70,
+    color: "#16B497",
+  },
+  title: {
+    fontSize: 20,
+  },
+});
+
+export default StudentAnalyze;

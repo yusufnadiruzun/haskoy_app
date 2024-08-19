@@ -15,12 +15,7 @@ const PastInspection = ({ navigation }) => {
   console.log(result.studentPastInspection);
   return (
     <SafeAreaView className="flex w-full">
-        <Text
-        className="mx-auto text-2xl p-4 text-haskoyGreen font-bold"
-        style={{ fontFamily: "serif" }}
-      >
-        Geçmiş Yoklama Listesi
-      </Text>
+        
       <TouchableOpacity>
         <Icon
           name="arrow-left"

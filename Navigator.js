@@ -30,7 +30,8 @@ import BarcodView from "./src/screens/menuScreens/Inspection/admin/addInspection
 import InspectionStudentList from "./src/screens/menuScreens/Inspection/admin/addInspection/InspectionStudentList";
 import InspectionList from "./src/screens/menuScreens/Inspection/admin/pastInspection/InspectionList";
 import DateInspectionScreen from "./src/screens/menuScreens/Inspection/admin/pastInspection/DateInspectionScreen";
-
+import StudentAnalyze from "./src/screens/menuScreens/Inspection/admin/studentAnalyze/StudentAnalyze";
+import StudentAnalyzeScreen from "./src/screens/menuScreens/Inspection/admin/studentAnalyze/StudentAnalyzeScreen";
 // navigation inspection user
 import BarcodScanner from "./src/screens/menuScreens/Inspection/user/BarcodScanner";
 import PastInspection from "./src/screens/menuScreens/Inspection/user/PastInspection"
@@ -38,7 +39,8 @@ import PastInspection from "./src/screens/menuScreens/Inspection/user/PastInspec
 // helpers
 import { LoginControl } from "./src/helpers/auth/auth";
 import User from "./src/Objects/User";
-
+// loading
+import LoadingOverlay from "./src/components/LoadingOverlay";
 
 
 const Stack = createNativeStackNavigator();
@@ -80,7 +82,9 @@ function Navigator() {
   return (
     <View style={{ flex: 1 }}>
       {selector.login ? (
+        
         <NavigationContainer>
+                <LoadingOverlay />
           <Stack.Navigator
             screenOptions={{
               headerShown: false,
@@ -94,6 +98,8 @@ function Navigator() {
             <Stack.Screen name="InspectionList" component={InspectionList} />
             <Stack.Screen name="BarcodScanner" component={BarcodScanner} />
             <Stack.Screen name="PastInspection" component={PastInspection} />
+            <Stack.Screen name="StudentAnalyze" component={StudentAnalyze} />
+            <Stack.Screen name="StudentAnalyzeScreen" component={StudentAnalyzeScreen} />
             <Stack.Screen name="DateInspectionScreen" component={DateInspectionScreen} />
             <Stack.Screen name="Cleaner" component={Cleaner} />
             <Stack.Screen name="Guard" component={Guard} />
