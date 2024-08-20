@@ -5,14 +5,16 @@ import {
   ScrollView,
   TouchableOpacity,
 } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useSelector } from "react-redux";
 import Icon from "react-native-vector-icons/FontAwesome";
 import InspectionLItem from "../../../../components/InspectionLItem";
+
 const PastInspection = ({ navigation }) => {
   const result = useSelector((state) => state.result);
   console.log(result.studentPastInspection);
+  
   return (
     <SafeAreaView className="flex w-full">
         

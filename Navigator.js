@@ -32,6 +32,8 @@ import InspectionList from "./src/screens/menuScreens/Inspection/admin/pastInspe
 import DateInspectionScreen from "./src/screens/menuScreens/Inspection/admin/pastInspection/DateInspectionScreen";
 import StudentAnalyze from "./src/screens/menuScreens/Inspection/admin/studentAnalyze/StudentAnalyze";
 import StudentAnalyzeScreen from "./src/screens/menuScreens/Inspection/admin/studentAnalyze/StudentAnalyzeScreen";
+import StudentPastAttended from "./src/screens/menuScreens/Inspection/admin/studentAnalyze/StudentPastAttended";
+
 // navigation inspection user
 import BarcodScanner from "./src/screens/menuScreens/Inspection/user/BarcodScanner";
 import PastInspection from "./src/screens/menuScreens/Inspection/user/PastInspection"
@@ -99,6 +101,7 @@ function Navigator() {
             <Stack.Screen name="BarcodScanner" component={BarcodScanner} />
             <Stack.Screen name="PastInspection" component={PastInspection} />
             <Stack.Screen name="StudentAnalyze" component={StudentAnalyze} />
+            <Stack.Screen name="StudentPastAttended" component={StudentPastAttended} />
             <Stack.Screen name="StudentAnalyzeScreen" component={StudentAnalyzeScreen} />
             <Stack.Screen name="DateInspectionScreen" component={DateInspectionScreen} />
             <Stack.Screen name="Cleaner" component={Cleaner} />

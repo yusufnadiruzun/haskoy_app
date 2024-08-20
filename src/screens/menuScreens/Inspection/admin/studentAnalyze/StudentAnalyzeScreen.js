@@ -6,6 +6,10 @@ import { AnimatedCircularProgress } from "react-native-circular-progress";
 import { useDispatch } from "react-redux";
 import { LoginStarted,StopLoading,getStudentPastInspection } from "../../../../../redux/actionTypes";
 import { SafeAreaView } from "react-native-safe-area-context";
+import Title from "../../../../../components/Text/Title";
+import Button from "../../../../../components/buton/Button";
+
+
 const StudentAnalyzeScreen = ({ navigation, route }) => {
     const dispatch = useDispatch()
   const { name,surname,level,studentPhone } = route.params;
@@ -26,14 +30,11 @@ const StudentAnalyzeScreen = ({ navigation, route }) => {
   },[]);
   return (
     <SafeAreaView>
-        <View className="border">
-        <Text className="border mt-48 text-center">{`${name} ${surname}`}</Text>
-        </View>
-        <View>
-            <TouchableOpacity>
-                <Text className="text-center mt-8 border rounded-2xl"> Öğrencinin Geçmiş Yoklamaları </Text>
-            </TouchableOpacity>
-        </View>
+        <Title name={name + " "+ surname}></Title>
+        <Button style={"w-1/2 mx-auto mt-11"} onPress={() => navigation.navigate("StudentPastAttended",{name: name, surname:surname})}title={"Öğrencinin Geçmiş Yoklamaları "}></Button>
+
+            
+        
         <View className="items-center mt-48">
       <AnimatedCircularProgress
         size={200}

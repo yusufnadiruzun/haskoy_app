@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet } from "react-native";
 import React, { useState } from "react";
-import Icon from "react-native-vector-icons/FontAwesome5";
+
 import { SafeAreaView } from "react-native-safe-area-context";
 import MenuItem from "../../../components/MenuItem";
 import { useEffect } from "react";
@@ -13,12 +13,11 @@ import {
   getStudentPastInspection,
   StopLoading,
 } from "../../../redux/actionTypes";
-import * as Progress from "react-native-progress";
-import PastInspection from "./user/PastInspection";
+
 import { useSelector } from "react-redux";
 import analyze from "../../../Methods/AnalyzeInspection";
 import { LoginStarted } from "../../../redux/actionTypes";
-import store from "../../../redux/index"; // Import your Redux store
+import BackButton from "../../../components/buton/BackButton";
 const InspectionMenu = ({ navigation }) => {
 
   const result = useSelector((state) => state.result);
@@ -55,7 +54,9 @@ const InspectionMenu = ({ navigation }) => {
   }, []);
   console.log(analyzeResult);
   return (
+
     <SafeAreaView className="container">
+      <BackButton onPress={()=> navigation.navigate("Menu")}></BackButton>
       <Text
         className="mx-auto text-3xl mt-8 p-4 text-haskoyGreen font-bold"
         style={{ fontFamily: "serif" }}
