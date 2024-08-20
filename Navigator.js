@@ -55,30 +55,22 @@ function Navigator() {
     //   password: "123456",
     //   usertoken: "$2a$10$9to60RHWgYS5DO17twbS6.XLydpBCQFuiscB.DdvKjKRS2VFjv2p.",
     // }
-    // LoginControl(user)
-    console.log(new Date().getDate(),new Date().getMonth()+1,new Date().getFullYear())
-   /* const getStorageData = async () => {
-
+   const getStorageData = async () => {
+    // AsyncStorage.setItem('usertoken',"$2a$10$gNWMdSmMHCb/4tWXSyMUoO7NpN2YXRv2PdBNpHSH5uFxl8u.kcOIO")
      const user = new User();
-     await AsyncStorage.setItem(
-        "usertoken",
-        "$2a$10$02nn4YIoWwkttNQ3iHju/OcWALAw64vcxBTq5fysVtmOyyzOIZKAW"
-      );
+     
        user.usertoken =  await AsyncStorage.getItem('usertoken')
        await AsyncStorage.getItem("usertoken").then((value) => {
-        if (value == null) {
-          AsyncStorage.setItem(
-            "usertoken",
-            "$2a$10$02nn4YIoWwkttNQ3iHju/OcWALAw64vcxBTq5fysVtmOyyzOIZKAW"
-          );
+        if (value != null) {
+
           LoginControl(user)
         } else {
-          LoginControl(user);
+          console.log("null aq")
         }
       });
     };
     getStorageData();
-    */
+    
   }, []);
 
   return (

@@ -118,7 +118,7 @@ const InspectionMenu = ({ navigation }) => {
             />
             <Text className="font-bold text-midnight mt-5 text-2xl">
               Programlara Katılım Oranı %
-              {parseFloat("0." + analyzeResult[3]) * 100}
+              {(parseFloat("0." + analyzeResult[3]) * 100).toFixed(0.1)}
             </Text>
           </View>
         </View>

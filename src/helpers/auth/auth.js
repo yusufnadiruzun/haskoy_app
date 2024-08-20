@@ -20,7 +20,7 @@ export const LoginControl = async (user) => {
     await loginApi
       .login(user)
       .then((result) => store.dispatch(LoginSuccess(result.data.userToken,result.data.phone,result.data.name,result.data.surname)))
-      .catch((err) => console.log(err));
+      .catch((err) => store.dispatch(StopLoading()));
   } else {
     if (await LoginTextControl(user)) {
       try {
@@ -29,15 +29,13 @@ export const LoginControl = async (user) => {
         store.dispatch(LoginSuccess(result.data.userToken,result.data.phone,result.data.name,result.data.surname));
       } catch (error) {
         alert("Kullanıcı Adı veya Şifre Hatalı");
-      } finally {
-        store.dispatch(StopLoading());
-        const token = await AsyncStorage.getItem("usertoken");
-        console.log("AsyncStorage'den okunan usertoken: ", token);
-      }
+      } 
+      
     }else{
       console.log("else ici ")
       store.dispatch(StopLoading());
     }
+    
   }
 };
 

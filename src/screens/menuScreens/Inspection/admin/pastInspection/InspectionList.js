@@ -10,8 +10,9 @@ import InspectionLItem from "../../../../../components/InspectionLItem";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Icon from "react-native-vector-icons/FontAwesome";
 import InspectionApi from "../../../../../../Api/Inspection";
+
 const InspectionList = ({ navigation }) => {
-  const [pastInspection, setPastInspection] = useState([]); // Başlangıç değeri null
+  const [pastInspection, setPastInspection] = useState([]);
 
   useEffect(() => {
     InspectionApi.getAllInspection()
@@ -22,17 +23,8 @@ const InspectionList = ({ navigation }) => {
       .catch((err) => console.log(err));
   }, []);
 
-  // if (!pastInspection || !pastInspection.result) {
-  //   // Veri yüklenirken gösterilecek bir durum
-  //   return (
-  //     <SafeAreaView>
-  //       <Text>Loading...</Text>
-  //     </SafeAreaView>
-  //   );
-  // }
-
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.safeArea}>
       <TouchableOpacity>
         <Icon
           name="arrow-left"
@@ -49,20 +41,19 @@ const InspectionList = ({ navigation }) => {
         Geçmiş Yoklama Listesi
       </Text>
 
-      <ScrollView style={styles.container}>
+      <ScrollView  style={styles.container}>
         <View style={styles.listItem}>
           {Array.isArray(pastInspection) && pastInspection.length > 0 ? (
-            <View className="flex-row justify-around p-3 ">
+            <View className="flex-row justify-around p-3">
               <Text style={styles.title}>Tarih</Text>
               <Text style={styles.title}>Yoklama</Text>
-              <Text style={styles.title}> Katılımcı Sayısı</Text>
+              <Text style={styles.title}>Katılımcı Sayısı</Text>
             </View>
           ) : null}
           {Array.isArray(pastInspection) && pastInspection.length > 0 ? (
             pastInspection.map((item, index) => (
               <View key={index}>
                 <InspectionLItem
-                  
                   count={item.participant_count}
                   date={item.date}
                   inspection={item.inspection_name}
@@ -85,18 +76,19 @@ const InspectionList = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    display: "flex",
-    padding: 1,
+  safeArea: {
+    flex: 1,
   },
-  warningText: {},
+  container: {
+    flex: 1,
+
+  },
   title: {
     fontSize: 15,
     fontWeight: "bold",
   },
   listItem: {
     flex: 1,
-   
   },
 });
 
