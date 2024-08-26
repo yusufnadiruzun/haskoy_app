@@ -10,9 +10,14 @@ export function SigninStarted() {
     type: SIGNINSTARTED,
   };
 }
-export function SigninSuccess() {
+export function SigninSuccess(usertoken, phone, name, surname) {
   return {
     type: SIGNINSUCCESS,
+    usertoken: usertoken,
+    phone: phone,
+    name: name,
+    surname: surname,
+    
   };
 }
 

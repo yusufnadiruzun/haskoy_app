@@ -1,19 +1,27 @@
 import React from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
-import MenuItem from "../../components/MenuItem";
-import { View, Text, Image, StyleSheet } from "react-native";
 
+import MenuItem from "../../components/MenuItem";
+import { View,  Image, StyleSheet } from "react-native";
+import Title from "../../components/Text/Title";
+import { useSelector } from "react-redux";
+import Icon from "react-native-vector-icons/FontAwesome";
+import { SafeAreaView } from "react-native-safe-area-context";
 const Menu = ({ navigation }) => {
-  
+  const state = useSelector((state)=> state.result)
   return (
-    <View className="container">
+    <SafeAreaView className="container">
+      {/* <View className = "flex-row justify-center mt-2">
+      <Icon name="user" size={20}  style={{padding:5,marginTop:'4%',fontSize:20, color:"orange"}}/>  
+   </View> */}
       <View className="items-center mt-10">
         <Image
           source={require("../../assets/haskoy.png")}
           className="w-1/2 h-32"
         />
       </View>
+      
         <View className="flex-row flex-wrap mt-10 justify-center ">
+          
           <MenuItem
             name={"Yoklama"}
             where={() => navigation.navigate("InspectionMenu")}
@@ -47,7 +55,7 @@ const Menu = ({ navigation }) => {
             where={() => navigation.navigate("Competition")}
           ></MenuItem>
         </View>
-        </View>
+        </SafeAreaView>
     
   );
 };

@@ -18,8 +18,11 @@ module.exports = {
       'silver': '#ecebff',
       'bubble-gum': '#ff77e9',
       'bermuda': '#78dcca',
-      'haskoyGreen': '#16B497',
+      'haskoyGreen':'#16B497',
       'haskoyOrange': '#F1701C',
+      'bahcekoyGreen':"#072928",
+      'bahcekoyOrange':"#AD9062"
+
      
     },
     extend: {},

@@ -40,10 +40,13 @@ export const LoginControl = async (user) => {
 };
 
 export const SignupControl = async (user) => {
+
   if (await SignTextControl(user)) {
     store.dispatch(SigninStarted()); // Dispatch SigninStarted action
-    if (await loginApi.signup(user)) {
-      store.dispatch(SigninSuccess()); // Dispatch SigninSuccess action
+    //if (await loginApi.signup(user)) {
+      const result = await loginApi.signup(user)
+      store.dispatch(SigninSuccess(result.data.userToken,result.data.phone,result.data.name,result.data.surname)); // Dispatch SigninSuccess action
+      await AsyncStorage.setItem("usertoken", result.data.userToken);
     }
-  }
+ // }
 };

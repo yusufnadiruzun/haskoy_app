@@ -18,6 +18,7 @@ import { useSelector } from "react-redux";
 import analyze from "../../../Methods/AnalyzeInspection";
 import { LoginStarted } from "../../../redux/actionTypes";
 import BackButton from "../../../components/buton/BackButton";
+import Title from "../../../components/Text/Title";
 const InspectionMenu = ({ navigation }) => {
 
   const result = useSelector((state) => state.result);
@@ -42,8 +43,9 @@ const InspectionMenu = ({ navigation }) => {
         const pastInspectionsData = await inspectionApi.getStudentInspection(
           result.phone
         );
-        dispatch(getStudentPastInspection(pastInspectionsData.data)); // Geçmiş yoklamaları state'e kaydet
-        setanalyzeResult(analyze(pastInspectionsData.data));
+        
+        dispatch(getStudentPastInspection(pastInspectionsData.data == "empty data" ? [] :pastInspectionsData.data )); // Geçmiş yoklamaları state'e kaydet
+        setanalyzeResult(analyze(pastInspectionsData.data == "empty data" ? [] :pastInspectionsData.data ));
         dispatch(StopLoading())
         
       }
@@ -57,12 +59,8 @@ const InspectionMenu = ({ navigation }) => {
 
     <SafeAreaView className="container">
       <BackButton onPress={()=> navigation.navigate("Menu")}></BackButton>
-      <Text
-        className="mx-auto text-3xl mt-8 p-4 text-haskoyGreen font-bold"
-        style={{ fontFamily: "serif" }}
-      >
-        Yoklama
-      </Text>
+      <Title color={"text-haskoyGreen"} name={"Yoklama"}></Title>
+     
       {result.userPermissions.some(
         (item) => item.permission_name === "yoklama"
       ) ? (

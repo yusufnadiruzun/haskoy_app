@@ -58,7 +58,7 @@ const InspectionStudentList = ({ navigation, route }) => {
               number={index + 1}
               name={student.name}
               surname={student.surname}
-              status={student.status}
+              status={student.status }
               onchange={(value) => {
                 deneme(value, student.phone);
               }}

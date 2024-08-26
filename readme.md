@@ -15,3 +15,5 @@
  emulator -list-avds
 
  emulator -avd [AVD_NAME]
+
+ Uygulama Güncelleme Bildirimi Verilecek

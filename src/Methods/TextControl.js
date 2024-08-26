@@ -1,7 +1,7 @@
-function SignTextControl(User) {
+function SignTextControl(user) {
   
     setTimeout(() => {}, 300);
-    const { name, email, phone, password, status } = User;
+    const { name, email, phone, password, status } = user;
   
     if (name === "" || email === "" || phone === "" || password === "") {
       alert("Lütfen Boş Alan Bırakmayınız");

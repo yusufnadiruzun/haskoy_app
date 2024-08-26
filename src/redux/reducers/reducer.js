@@ -1,5 +1,5 @@
 let default_state = {
-  login: true,
+  login: false,
   loading: false,
   usertoken:null, //"$2a$10$gNWMdSmMHCb/4tWXSyMUoO7NpN2YXRv2PdBNpHSH5uFxl8u.kcOIO",//null,
   phone: null,//5531503592,//null,
@@ -17,7 +17,7 @@ const reducer = (state = default_state, action) => {
       return { ...state, loading: true };
       break;
     case "SIGNINSUCCESS":
-      return { ...state, login: true, loading: false };
+      return { ...state, login: true, loading: false, usertoken: action.usertoken, phone: action.phone, name: action.name, surname: action.surname  };
       break;
     case "LOGINSTARTED":
       return { ...state,loading: true };
