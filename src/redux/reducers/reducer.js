@@ -6,6 +6,7 @@ let default_state = {
   name: null,
   surname: null,
   jwttoken: null,
+  modalVisible : false,
   userPermissions :[],
   studentPastInspection:[]
 };
@@ -28,9 +29,19 @@ const reducer = (state = default_state, action) => {
       case "STOPLOADING":
       return { ...state, loading: false };
       break;
+      case "SETMODALVISIBLE":
+        return { ...state, modalVisible: action.modalVisible };
+        break;
+        
     case "GETUSERPERMISSIONS":
       return { ...state, userPermissions: action.permissions };
       break;
+      case "UPDATE_INSPECTION":
+        return {...state,studentPastInspection: state.studentPastInspection.map((item) =>item.date === action.payload.date && item.inspection_name === action.payload.inspection_name
+      ? { ...item, ...action.payload }
+              : item
+          ),
+        };
     case "GETSTUDENTPASTINSPECTION":
       return { ...state, studentPastInspection: action.inspection };
       break;

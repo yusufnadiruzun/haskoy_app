@@ -54,7 +54,7 @@ const InspectionMenu = ({ navigation }) => {
     getPermission();
     callPastInspection();
   }, []);
-  console.log(analyzeResult);
+  
   return (
 
     <SafeAreaView className="container">

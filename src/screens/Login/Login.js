@@ -14,7 +14,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { LoginControl } from "../../helpers/auth/auth";
 import User from "../../Objects/User";
 import * as Progress from "react-native-progress";
-
+import Title from "../../components/Text/Title"
 function Login({ navigation }) {
   const selector = useSelector((state) => state.result);
 
@@ -30,7 +30,7 @@ function Login({ navigation }) {
     LoginControl(user);
   };
   return (
-    <SafeAreaView>
+    <SafeAreaView className="container flex-1">
       <ScrollView>
         <View className="items-center mt-10">
           <Image
@@ -39,10 +39,7 @@ function Login({ navigation }) {
           />
         </View>
 
-        <Text className="m-auto mt-7 font-semibold text-2xl text-haskoyGreen">
-          Hasköy'e Hoşgeldiniz
-        </Text>
-
+        <Title name={"Hasköy'e Hoşgeldiniz"} color={"text-haskoyGreen"}></Title>
         <View className=" items-center justify-center mt-10">
           <TextInput
             className=" border-b border-haskoyGreen rounded-lg p-2 m-3 w-3/4 h-16 "
@@ -73,9 +70,7 @@ function Login({ navigation }) {
             <Text className="font-bold">Hala Hesabınız Yokmu ?</Text>
           </TouchableOpacity>
         </View>
-        <View className="items-center bottom-0 mt-20">
-          <Text className="">© YNDR - 2022</Text>
-        </View>
+        
         {selector.loading ? (
           <View
             style={{ position: "absolute", zIndex: 1, top: "50%", left: "45%" }}
@@ -84,6 +79,9 @@ function Login({ navigation }) {
           </View>
         ) : null}
       </ScrollView>
+      <View className="items-center  mb-8">
+          <Text className="font-bold">© YNDR - 2022</Text>
+        </View>
     </SafeAreaView>
   );
 }

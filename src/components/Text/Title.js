@@ -5,7 +5,7 @@ const Title = ({name,color}) => {
 
   return (
     <View>
-      <Text  className={`mx-auto text-3xl mt-1 p-2 ${color} font-bold`}
+      <Text  className={`mx-auto text-3xl mt-4 p-5 ${color} font-bold`}
         style={{ fontFamily: "serif" }}>{name}</Text>
     </View>
   )

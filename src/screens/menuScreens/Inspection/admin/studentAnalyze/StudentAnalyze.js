@@ -27,7 +27,7 @@ const StudentAnalyze = ({ navigation }) => {
   }, []);
 
   const handleStudentPress = (student) => {
-    console.log("Tıklanan öğrenci:", student.name, student.surname);
+    
     navigation.navigate("StudentAnalyzeScreen", {
       studentPhone: student.phone,
       name: student.name,

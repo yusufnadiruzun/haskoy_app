@@ -14,9 +14,10 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import api from "../../../../../../Api/Inspection";
 import DateInspectionLItem from "../../../../../components/DateInspectionLItem";
 
-const DateInspectionScreen = ({ navigation, route }) => {
-  const { inspection_name, date } = route.params;
 
+const DateInspectionScreen = ({ navigation, route }) => {
+
+  const { inspection_name, date } = route.params;
   const [students, setStudents] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedStudent, setSelectedStudent] = useState(null);

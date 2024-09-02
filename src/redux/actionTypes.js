@@ -5,6 +5,9 @@ const LOGINSUCCESS = "LOGINSUCCESS";
 const STOPLOADING = "STOPLOADING";
 const GETUSERPERMISSIONS = "GETUSERPERMISSIONS";
 const GETSTUDENTPASTINSPECTION = "GETSTUDENTPASTINSPECTION"
+const SETMODALVISIBLE = "SETMODALVISIBLE";
+const UPDATE_INSPECTION = "UPDATE_INSPECTION";
+
 export function SigninStarted() {
   return {
     type: SIGNINSTARTED,
@@ -57,3 +60,14 @@ export function getStudentPastInspection(inspection) {
     inspection: inspection,
   };
 }
+export function setModalVisible(modalVisible) {
+  return {
+    type: SETMODALVISIBLE,
+    modalVisible: modalVisible,
+  };
+}
+
+export const updateInspectionData = (updatedInspection) => ({
+  type: UPDATE_INSPECTION,
+  payload: updatedInspection,
+});

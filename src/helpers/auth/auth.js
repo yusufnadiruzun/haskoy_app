@@ -21,6 +21,8 @@ export const LoginControl = async (user) => {
       .login(user)
       .then((result) => store.dispatch(LoginSuccess(result.data.userToken,result.data.phone,result.data.name,result.data.surname)))
       .catch((err) => store.dispatch(StopLoading()));
+      
+      store.dispatch(StopLoading())
   } else {
     if (await LoginTextControl(user)) {
       try {
@@ -29,6 +31,7 @@ export const LoginControl = async (user) => {
         store.dispatch(LoginSuccess(result.data.userToken,result.data.phone,result.data.name,result.data.surname));
       } catch (error) {
         alert("Kullanıcı Adı veya Şifre Hatalı");
+        store.dispatch(StopLoading())
       } 
       
     }else{
