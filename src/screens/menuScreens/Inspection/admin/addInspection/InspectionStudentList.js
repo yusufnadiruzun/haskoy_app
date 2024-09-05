@@ -5,7 +5,7 @@ import StudentLItem from "../../../../../components/StudentLItem";
 import Icon from "react-native-vector-icons/FontAwesome";
 import api from "../../../../../../Api/Users";
 import inspectionApi from "../../../../../../Api/Inspection";
-
+import TodayDate from "../../../../../Methods/TodayDate";
 const InspectionStudentList = ({ navigation, route }) => {
   const [students, setStudents] = React.useState([]);
   const { inspectionName } = route.params;
@@ -24,14 +24,24 @@ const InspectionStudentList = ({ navigation, route }) => {
       .catch((err) => console.log(err));
   };
   useEffect(() => {
-    inspectionApi
-      .createInspection(inspectionName)
-      .then((res) => console.log(res.data))
-      .catch((err) => console.log(err));
-    api
-      .getUsers()
-      .then((res) => setStudents(res.data))
-      .catch((err) => console.log(err));
+    const createInspection = async () => {
+      await inspectionApi
+        .createInspection(inspectionName)
+        .then((res) => console.log(res.data))
+        .catch((err) => console.log(err));
+    };
+    const getInspection = async () => {
+      await inspectionApi
+        .getInspection(inspectionName, TodayDate())
+        .then((res) => setStudents(res.data))
+        .catch((err) => console.log(err));
+    };
+    createInspection();
+    getInspection();
+    // api
+    //   .getUsers()
+    //   .then((res) => setStudents(res.data))
+    //   .catch((err) => console.log(err));
   }, []);
   return (
     <SafeAreaView>
@@ -51,20 +61,23 @@ const InspectionStudentList = ({ navigation, route }) => {
         >
           Talebe Listesi
         </Text>
-        {students.map((student, index) => {
-          return (
+
+        {Array.isArray(students) && students.length > 0 ? (
+          students.map((student, index) => (
             <StudentLItem
               key={index}
               number={index + 1}
               name={student.name}
               surname={student.surname}
-              status={student.status }
+              status={student.status}
               onchange={(value) => {
                 deneme(value, student.phone);
               }}
-            ></StudentLItem>
-          );
-        })}
+            />
+          ))
+        ) : (
+          <Text>Veri bulunamadı</Text>
+        )}
       </ScrollView>
     </SafeAreaView>
   );

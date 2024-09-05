@@ -8,6 +8,7 @@ let default_state = {
   jwttoken: null,
   modalVisible : false,
   userPermissions :[],
+  updateVisible : false,
   studentPastInspection:[]
 };
 

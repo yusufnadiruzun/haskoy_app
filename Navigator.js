@@ -43,6 +43,7 @@ import { LoginControl } from "./src/helpers/auth/auth";
 import User from "./src/Objects/User";
 // loading
 import LoadingOverlay from "./src/components/LoadingOverlay";
+import NewUpdateNotification from "./src/components/NewUpdateNotification";
 
 
 const Stack = createNativeStackNavigator();
@@ -78,6 +79,7 @@ function Navigator() {
       {selector.login ? (
         
         <NavigationContainer>
+           <NewUpdateNotification />
                 <LoadingOverlay />
           <Stack.Navigator
             screenOptions={{

@@ -65,7 +65,7 @@ const NewBarcod = ({ navigation }) => {
                 </TouchableOpacity>
                 <TouchableOpacity
                     className="border-solid rounded-lg bg-haskoyGreen mt-6 w-2/4 "
-                    onPress={() => navigation.navigate("InspectionStudentList", { inspectionName: inspectionName })}
+                    onPress={() => inspectionName != "" ? navigation.navigate("InspectionStudentList", { inspectionName: inspectionName }): alert("yoklama ismi giriniz")}
                 >
                     <Text className="text-center text-white font-bold text-lg">
                         Listeden Yoklama Al
