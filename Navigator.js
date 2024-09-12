@@ -79,7 +79,7 @@ function Navigator() {
       {selector.login ? (
         
         <NavigationContainer>
-           <NewUpdateNotification />
+          <NewUpdateNotification />
                 <LoadingOverlay />
           <Stack.Navigator
             screenOptions={{
@@ -107,7 +107,7 @@ function Navigator() {
             <Stack.Screen name="Competition" component={Competition} />
           </Stack.Navigator>
         </NavigationContainer>
-      ) : (
+      ) : (   
         <NavigationContainer>
           <Stack.Navigator
             screenOptions={{

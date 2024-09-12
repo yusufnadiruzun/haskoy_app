@@ -4,7 +4,7 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import { useSelector, useDispatch } from "react-redux";
 
 const NewUpdateNotification = () => {
-  const dispatch = useDispatch();
+
   const result = useSelector((state) => state.result);
 
   return (
@@ -15,7 +15,7 @@ const NewUpdateNotification = () => {
     >
       <View>
         <View>
-          <Text>Öğrenci Yoklama Güncelle</Text>
+          <Text>Güncelleme Ekranı</Text>
         </View>
       </View>
     </Modal>

@@ -5,7 +5,10 @@ import inspectionApi from "../../Api/Inspection";
 import { useSelector,useDispatch } from 'react-redux';
 import { setModalVisible } from '../redux/actionTypes';
 import { updateInspectionData } from '../redux/actionTypes';
+
 const UpdateInspectionPopUp = ({ name, surname, inspection_name, student_phone, date }) => {
+
+
   const dispatch = useDispatch()
   const result = useSelector((state) => state.result);
  

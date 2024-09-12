@@ -82,14 +82,14 @@ const StudentPastAttended = ({ navigation, route }) => {
               />
             ))
           ) : (
-            <Text>Veri bulunamadı</Text>
+            <Text className = "mx-auto">Veri bulunamadı</Text>
           )}
         </View>
       </ScrollView>
     </SafeAreaView>
   );
 };
-
+ 
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
